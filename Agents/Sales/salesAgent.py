@@ -1334,3 +1334,33 @@ if __name__ == "__main__":
     print(f"\n  Session Successful: {success['successful']}")
     print(f"  Actions Taken: {', '.join(success['actions'])}")
 
+    # ============================================================================
+# MASTER AGENT ENTRY POINT
+# ============================================================================
+
+# Single instance (session-based can be expanded later)
+# _sales_agent_instance = LoanSalesAgent(enable_rag=True)
+
+# def handle_sales(user_message: str) -> str:
+#     """
+#     Entry point for Master Agent → Sales Agent.
+#     """
+#     return _sales_agent_instance.process_message(user_message)
+_sales_agent_instance = LoanSalesAgent(enable_rag=True)
+
+def handle_sales(user_message: str) -> dict:
+    """
+    Entry point for Master Agent → Sales Agent.
+    Always return structured JSON.
+    """
+    sales_text = _sales_agent_instance.process_message(user_message)
+
+    return {
+        "message": sales_text,
+        "signals": {
+            "ready_for_underwriting": True
+        }
+    }
+
+
+

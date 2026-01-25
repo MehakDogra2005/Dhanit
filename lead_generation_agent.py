@@ -458,3 +458,18 @@ if __name__ == "__main__":
     
     # Test Case 3: Routing to Support
     agent.run("Connect me to customer support, I have a complaint.")
+
+
+
+# ============================================================================
+# MASTER AGENT ENTRY POINT (REQUIRED)
+# ============================================================================
+
+_lead_agent_instance = LeadGenerationAgent()
+
+def handle_lead(user_message: str):
+    """
+    Entry point used by Master Agent
+    """
+    return _lead_agent_instance.run(user_message)
+

@@ -2605,3 +2605,18 @@ if __name__ == "__main__":
     for test, passed in results.items():
         status = "✅ PASS" if passed else "❌ FAIL"
         print(f"  {test}: {status}")
+
+
+
+# ============================================================================
+# MASTER AGENT ENTRY POINT
+# ============================================================================
+
+_underwriting_agent_instance = UnderwritingAgent()
+
+def handle_underwriting(user_message: str):
+    """
+    Entry point used by master_agent
+    """
+    return _underwriting_agent_instance.process_message(user_message)
+

@@ -875,11 +875,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Check if user is logged in
             const isLoggedIn = localStorage.getItem('Dhanit_logged_in');
-            if (!isLoggedIn) {
-                // Redirect to home page if not logged in
-                window.location.href = 'home.html';
-                return;
-            }
+            // if (!isLoggedIn) {
+            //     // Redirect to home page if not logged in
+            //     window.location.href = '/';
+            //     return;
+            // }
 
             // Update user profile display
             const userName = localStorage.getItem('Dhanit_user_name') || 'User';
@@ -1162,34 +1162,47 @@
                 sidebar.classList.toggle('open');
             });
             
-            // Function to send a message
-            function sendMessage() {
-                const message = chatInput.value.trim();
-                if (message === '') return;
-                
-                // Hide welcome screen if it's the first message
-                if (welcomeScreen.style.display !== 'none') {
-                    welcomeScreen.style.display = 'none';
-                }
-                
-                // Add user message
-                addMessage(message, 'user');
-                
-                // Clear input and reset height
-                chatInput.value = '';
-                chatInput.style.height = 'auto';
-                
-                // Show typing indicator
-                showTypingIndicator();
-                
-                // Simulate AI response after a delay
-                setTimeout(() => {
-                    removeTypingIndicator();
-                    const response = generateResponse(message);
-                    addMessage(response, 'bot');
-                }, 1500);
-            }
-            
+           async function sendMessage() {
+    const message = chatInput.value.trim();
+    if (message === '') return;
+
+    // Hide welcome screen if it's the first message
+    if (welcomeScreen.style.display !== 'none') {
+        welcomeScreen.style.display = 'none';
+    }
+
+    // Add user message
+    addMessage(message, 'user');
+
+    // Clear input and reset height
+    chatInput.value = '';
+    chatInput.style.height = 'auto';
+
+    // Show typing indicator
+    showTypingIndicator();
+
+    try {
+        const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message })
+        });
+
+        const data = await res.json();
+
+        removeTypingIndicator();
+
+        addMessage(data.message || JSON.stringify(data), 'bot');
+
+    } catch (err) {
+        removeTypingIndicator();
+        addMessage("⚠️ Server error. Is Flask running?", 'bot');
+        console.error(err);
+    }
+}
+ 
             // Function to add a message to the chat
             function addMessage(text, sender) {
                 saveMessage(text, sender);
