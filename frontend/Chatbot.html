@@ -3,289 +3,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhanit - Investment & Loan Assistant</title>
+    <title>Dhanit - AI Loan Assistant</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         :root {
-            --primary: #7BB8CC;
-            --primary-dark: #5FA3B8;
-            --primary-light: #95C9D9;
-            --sidebar-bg: #ffffff;
-            --sidebar-hover: #E8F3F7;
-            --sidebar-active: #D4E8EE;
-            --chat-bg: #ffffff;
-            --user-msg-bg: #7BB8CC;
-            --bot-msg-bg: #ffffff;
-            --border-color: #7BB8CC;
-            --text-primary: #2c3e50;
-            --text-secondary: #6b7c93;
-            --text-muted: #8e9aaf;
-            --shadow: 0 4px 20px rgba(123, 184, 204, 0.15);
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e40af;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-light: #f0f4f8;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
         }
 
         body {
-            background: linear-gradient(135deg, #D0E8F0 0%, #E5F2F7 50%, #CCDEE6 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
             color: var(--text-primary);
             height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
             overflow: hidden;
+            padding: 24px;
         }
 
-        /* Main Container Box */
-        .main-container {
+        .container {
             display: flex;
             width: 100%;
-            max-width: 1600px;
-            height: calc(100vh - 60px);
-            background: white;
+            height: 100%;
+            background: var(--bg-white);
             border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(123, 184, 204, 0.3);
-            border: 5px solid var(--border-color);
         }
 
-        /* Sidebar Styles */
+        /* SIDEBAR - LOAN CONTROL PANEL */
         .sidebar {
-            width: 280px;
-            background-color: var(--sidebar-bg);
+            width: 320px;
+            background: var(--bg-white);
+            border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            border-right: 2px solid #D4E8EE;
-            transition: transform 0.3s ease;
-            z-index: 100;
+            overflow-y: auto;
+            box-shadow: var(--shadow-sm);
         }
 
         .sidebar-header {
             padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 2px solid #D4E8EE;
+            border-bottom: 1px solid var(--border);
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-        }
-
-        .logo {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            filter: brightness(0) invert(1);
-        }
-
-        .logo svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .logo-text {
-            font-weight: 700;
-            font-size: 18px;
             color: white;
+        }
+
+        .sidebar-header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-header p {
+            font-size: 12px;
+            opacity: 0.9;
         }
 
         .new-chat-btn {
-            margin: 20px 16px;
-            padding: 14px 20px;
+            margin: 16px;
+            padding: 12px 16px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(123, 184, 204, 0.3);
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-md);
         }
 
         .new-chat-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(123, 184, 204, 0.4);
+            box-shadow: 0 8px 12px rgba(79, 70, 229, 0.3);
         }
 
-        .chat-history {
+        /* PANEL SECTIONS */
+        .panel-section {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .status-card {
+            background: linear-gradient(135deg, #f5f9fc 0%, #f0f6fb 100%);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s;
+        }
+
+        .status-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .status-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .status-icon.success {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .status-icon.warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        .status-icon.pending {
+            background: rgba(79, 70, 229, 0.15);
+            color: var(--primary);
+        }
+
+        .status-text {
+            flex: 1;
+        }
+
+        .status-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .status-subtext {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .pending-actions {
             flex: 1;
             overflow-y: auto;
+            padding: 8px;
+        }
+
+        .action-item {
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8d6 100%);
+            border-left: 3px solid var(--warning);
+            border-radius: 8px;
             padding: 12px;
-        }
-
-        .chat-history-item {
-            padding: 12px 14px;
-            border-radius: 10px;
+            margin-bottom: 10px;
             cursor: pointer;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-secondary);
-            font-size: 14px;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
+            transition: all 0.3s;
         }
 
-        .chat-history-item:hover {
-            background-color: var(--sidebar-hover);
-            border-color: var(--primary-light);
+        .action-item:hover {
+            box-shadow: var(--shadow-md);
             transform: translateX(4px);
         }
 
-        .chat-history-item.active {
-            background-color: var(--sidebar-active);
-            color: var(--primary);
+        .action-label {
+            font-size: 12px;
             font-weight: 600;
-            border-color: var(--primary);
+            color: var(--text-primary);
         }
 
-        .chat-history-item i {
-            font-size: 16px;
-        }
-
-        .chat-history-item .delete-btn {
-            margin-left: auto;
-            opacity: 0;
-            transition: all 0.2s ease;
-            padding: 6px 10px;
-            border-radius: 6px;
+        .action-desc {
+            font-size: 11px;
             color: var(--text-muted);
+            margin-top: 4px;
         }
 
-        .chat-history-item:hover .delete-btn {
-            opacity: 1;
+        .recent-chats {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
         }
 
-        .chat-history-item .delete-btn:hover {
-            background-color: rgba(255, 68, 68, 0.15);
-            color: #ff4444;
-            transform: scale(1.1);
+        .chat-item {
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            margin-bottom: 4px;
+            border-left: 3px solid transparent;
         }
 
-        .sidebar-footer {
-            padding: 20px;
-            border-top: 2px solid #D4E8EE;
+        .chat-item:hover {
+            background: var(--bg-light);
+            border-left-color: var(--primary);
+        }
+
+        /* MAIN CHAT AREA */
+        .chat-area {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            background: linear-gradient(to top, #F0F7FA 0%, white 100%);
+            background: var(--bg-white);
         }
 
-        .user-profile {
+        .chat-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ai-presence {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .user-profile:hover {
-            background-color: var(--sidebar-hover);
-            transform: translateX(4px);
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
+        .ai-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 2px 8px rgba(123, 184, 204, 0.3);
+            font-size: 22px;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            animation: softPulse 2.5s ease-in-out infinite;
         }
 
-        .user-name {
+        @keyframes softPulse {
+            0%, 100% { box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
+            50% { box-shadow: 0 0 0 8px rgba(79, 70, 229, 0.15); }
+        }
+
+        .ai-info h3 {
             font-size: 14px;
             font-weight: 600;
             color: var(--text-primary);
         }
 
-        /* Main Chat Area */
-        .chat-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            position: relative;
-            background: linear-gradient(to bottom, #F8FCFD 0%, #ffffff 100%);
-        }
-
-        .chat-header {
-            padding: 20px 28px;
-            border-bottom: 2px solid #D4E8EE;
+        .ai-status {
+            font-size: 12px;
+            color: var(--text-muted);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: white;
-            box-shadow: 0 2px 8px rgba(123, 184, 204, 0.08);
+            gap: 6px;
         }
 
-        .chat-title {
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: gentleBlink 2s ease-in-out infinite;
         }
 
-        .chat-title i {
-            font-size: 20px;
+        @keyframes gentleBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
 
         .header-actions {
             display: flex;
-            gap: 12px;
+            gap: 8px;
         }
 
-        .header-action-btn {
-            background: none;
-            border: 1px solid #D4E8EE;
-            color: var(--primary);
-            cursor: pointer;
-            padding: 8px 14px;
+        .header-btn {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
             border-radius: 8px;
-            transition: all 0.2s ease;
-            font-size: 14px;
+            background: var(--bg-light);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
         }
 
-        .header-action-btn:hover {
-            background-color: var(--sidebar-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(123, 184, 204, 0.2);
+        .header-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
 
-        .messages-container {
+        .messages {
             flex: 1;
             overflow-y: auto;
-            padding: 32px;
+            padding: 32px 24px;
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 16px;
+            background-image: url('../assets/chatbotBg.png');
+            background-size: cover;
+            background-position: center 30%;
+            background-attachment: scroll;
+            background-repeat: no-repeat;
+            position: relative;
         }
 
+        .messages::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('../assets/chatbotBg.png');
+            background-size: cover;
+            background-position: center 30%;
+            background-repeat: no-repeat;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .messages::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.88);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .messages > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .welcome-illustration {
+            display: none;
+        }
+
+        .welcome-state h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .welcome-state p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .suggested-questions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .question-chip {
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #f5f9fc 0%, #f0f6fb 100%);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .question-chip:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* MESSAGE STYLES */
         .message {
             display: flex;
-            gap: 16px;
-            max-width: 100%;
+            gap: 12px;
             animation: slideIn 0.3s ease;
+            max-width: 80%;
         }
 
         @keyframes slideIn {
@@ -299,431 +451,212 @@
             }
         }
 
+        .message.user {
+            align-self: flex-end;
+            max-width: 70%;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+        }
+
         .message-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .user-message .message-avatar {
-            background: linear-gradient(135deg, #7BB8CC 0%, #95C9D9 100%);
-            color: white;
-        }
-
-        .bot-message .message-avatar {
-            background: linear-gradient(135deg, #5FA3B8 0%, #7BB8CC 100%);
-            color: white;
-        }
-
-        .message-content {
-            flex: 1;
-            padding-top: 4px;
-            line-height: 1.6;
-        }
-
-        .user-message .message-content {
-            background: linear-gradient(135deg, var(--user-msg-bg) 0%, var(--primary-light) 100%);
-            padding: 16px 20px;
-            border-radius: 16px;
-            color: white;
-            box-shadow: 0 4px 12px rgba(123, 184, 204, 0.25);
-        }
-
-        .bot-message .message-content {
-            background-color: var(--bot-msg-bg);
-            padding: 16px 20px;
-            border-radius: 16px;
-            border: 2px solid #E8F3F7;
-            box-shadow: 0 2px 8px rgba(123, 184, 204, 0.08);
-        }
-
-        .message-text {
-            white-space: pre-wrap;
-            font-size: 15px;
-        }
-
-        .message-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            opacity: 0;
-            transition: all 0.2s ease;
-        }
-
-        .message:hover .message-actions {
-            opacity: 1;
-        }
-
-        .message-action {
-            background: none;
-            border: 1px solid #D4E8EE;
-            color: var(--primary);
-            cursor: pointer;
-            font-size: 13px;
-            padding: 6px 12px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-
-        .message-action:hover {
-            background-color: var(--sidebar-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(123, 184, 204, 0.15);
-        }
-
-        /* Input Area */
-        .input-container {
-            padding: 28px;
-            position: relative;
-            background: white;
-            border-top: 2px solid #D4E8EE;
-            box-shadow: 0 -2px 12px rgba(123, 184, 204, 0.08);
-        }
-
-        .input-wrapper {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .chat-input {
-            width: 100%;
-            padding: 16px 120px 16px 70px;
-            border: 2px solid #D4E8EE;
-            border-radius: 16px;
-            resize: none;
-            font-size: 15px;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            line-height: 1.5;
-            transition: all 0.3s ease;
-            background: #F8FCFD;
-            max-height: 200px;
-        }
-
-        .chat-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: white;
-            box-shadow: 0 0 0 3px rgba(123, 184, 204, 0.1);
-        }
-
-        .upload-button {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            padding: 12px;
-            border-radius: 12px;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(123, 184, 204, 0.3);
-        }
-
-        .upload-button:hover {
-            transform: translateY(-50%) translateY(-2px);
-            box-shadow: 0 6px 20px rgba(123, 184, 204, 0.4);
-        }
-
-        .upload-button:active {
-            transform: translateY(-50%) scale(0.95);
-        }
-
-        .mic-button {
-            position: absolute;
-            right: 70px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            padding: 12px;
-            border-radius: 12px;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(123, 184, 204, 0.3);
-        }
-
-        .mic-button:hover {
-            transform: translateY(-50%) translateY(-2px);
-            box-shadow: 0 6px 20px rgba(123, 184, 204, 0.4);
-        }
-
-        .mic-button:active,
-        .mic-button.recording {
-            transform: translateY(-50%) scale(0.95);
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
-        }
-
-        .send-button {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            padding: 12px;
-            border-radius: 12px;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(123, 184, 204, 0.3);
-        }
-
-        .send-button:hover {
-            transform: translateY(-50%) translateY(-2px);
-            box-shadow: 0 6px 20px rgba(123, 184, 204, 0.4);
-        }
-
-        .send-button:active {
-            transform: scale(0.95);
-        }
-
-        .input-footer {
-            display: flex;
-            justify-content: center;
-            margin-top: 16px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        /* Welcome Screen */
-        .welcome-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            text-align: center;
-            padding: 40px 32px;
-        }
-
-        .welcome-avatar {
-            width: 150px;
-            height: 150px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 24px rgba(123, 184, 204, 0.3);
-            background: white;
-            padding: 15px;
-            animation: fadeInScale 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
         }
 
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
         }
 
-        .welcome-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .welcome-greeting {
-            font-size: 36px;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: 16px;
-            animation: fadeInUp 0.6s ease 0.2s backwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .welcome-message {
-            font-size: 18px;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            max-width: 500px;
-            line-height: 1.6;
-            animation: fadeInUp 0.6s ease 0.4s backwards;
-        }
-
-        .welcome-title {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, #5FA3B8 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .welcome-subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 48px;
-            max-width: 700px;
-            line-height: 1.6;
-        }
-
-        .capabilities-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 900px;
-            margin-bottom: 48px;
-        }
-
-        .capability-card {
-            padding: 24px;
-            border-radius: 16px;
-            background: white;
-            text-align: left;
-            border: 2px solid #D4E8EE;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .capability-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(123, 184, 204, 0.2);
-            border-color: var(--primary);
-        }
-
-        .capability-icon {
-            font-size: 28px;
-            margin-bottom: 16px;
+        .message.ai .message-avatar {
+            background: var(--bg-light);
             color: var(--primary);
         }
 
-        .capability-title {
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 16px;
+        .message-bubble {
+            padding: 14px 16px;
+            border-radius: 12px;
+            line-height: 1.5;
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .message.ai .message-bubble {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
             color: var(--text-primary);
         }
 
-        .capability-desc {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        .examples-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            max-width: 800px;
-        }
-
-        .example-card {
+        /* STRUCTURED AI RESPONSE CARDS */
+        .ai-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             padding: 16px;
-            border-radius: 8px;
-            background-color: var(--sidebar-bg);
-            cursor: pointer;
-            transition: background-color 0.2s;
+            margin-top: 8px;
+            box-shadow: var(--shadow-sm);
+            animation: slideIn 0.3s ease;
+        }
+
+        .ai-card-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+        }
+
+        .ai-card-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .ai-card-item.success::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .ai-card-item.warning::before {
+            content: '⚠';
+            color: var(--warning);
             font-size: 14px;
         }
 
-        .example-card:hover {
-            background-color: var(--sidebar-hover);
+        .ai-card-item.pending::before {
+            content: '◐';
+            color: var(--primary);
+            font-size: 14px;
+            animation: spin 2s linear infinite;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            .main-container {
-                height: calc(100vh - 20px);
-                border-width: 3px;
-                border-radius: 16px;
-            }
-
-            .sidebar {
-                position: absolute;
-                height: 100%;
-                transform: translateX(-100%);
-                z-index: 1000;
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-                box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .capabilities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .welcome-title {
-                font-size: 32px;
-            }
-
-            .messages-container {
-                padding: 20px;
-            }
-
-            .input-container {
-                padding: 16px;
-            }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        .mobile-menu-btn {
-            display: none;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        .ai-card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        .ai-action-btn {
+            flex: 1;
+            padding: 10px 12px;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            transition: all 0.2s;
+        }
+
+        .ai-action-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* INPUT AREA */
+        .input-area {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-white);
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+        }
+
+        .input-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            text-align: center;
+            min-height: 16px;
+            transition: all 0.3s;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 14px;
+            resize: none;
+            max-height: 120px;
+            transition: all 0.3s;
+            background: var(--bg-light);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: var(--text-muted);
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-btn {
+            width: 40px;
+            height: 40px;
             border: none;
-            font-size: 18px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
             cursor: pointer;
-            padding: 10px 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(123, 184, 204, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-md);
+            font-size: 16px;
         }
 
-        .mobile-menu-btn:hover {
+        .input-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(123, 184, 204, 0.4);
+            box-shadow: 0 8px 12px rgba(37, 99, 235, 0.3);
         }
 
-        /* Loading Animation */
+        .input-btn:active {
+            transform: scale(0.95);
+        }
+
         .typing-indicator {
             display: flex;
             gap: 4px;
@@ -734,590 +667,285 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            animation: typingAnimation 1.4s infinite ease-in-out;
+            background: var(--primary);
+            animation: typing 1.4s infinite;
         }
 
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-        @keyframes typingAnimation {
-            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
-            40% { transform: scale(1); opacity: 1; }
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+            30% { transform: translateY(-10px); opacity: 1; }
         }
 
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #E8F3F7;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .message {
+                max-width: 90%;
+            }
+            .suggested-questions {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Main Container Box -->
-    <div class="main-container">
-        <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Hand base -->
-                    <path d="M 20 45 Q 18 50 20 52 L 28 58 Q 30 60 33 58 L 45 50 Q 48 48 48 44 L 48 30 Q 48 26 45 26 Q 44 26 43 27 L 43 22 Q 43 18 40 18 Q 38 18 37 20 L 37 16 Q 37 12 34 12 Q 32 12 31 14 L 31 10 Q 31 6 28 6 Q 25 6 25 10 L 25 35 L 22 32 Q 20 30 18 32 Q 16 34 18 36 Z" fill="#10a37f" stroke="#0d8c6c" stroke-width="1.5"/>
-                    
-                    <!-- Coins stack -->
-                    <ellipse cx="42" cy="18" rx="8" ry="3" fill="#ffd966" stroke="#e6b800" stroke-width="1"/>
-                    <ellipse cx="42" cy="20" rx="8" ry="3" fill="#ffe680" stroke="#e6b800" stroke-width="1"/>
-                    <ellipse cx="42" cy="22" rx="8" ry="3" fill="#ffd966" stroke="#e6b800" stroke-width="1"/>
-                    
-                    <!-- Dollar signs on coins -->
-                    <text x="42" y="20" font-size="6" fill="#e6b800" text-anchor="middle" font-weight="bold">₹</text>
-                    
-                    <!-- Sparkles -->
-                    <path d="M 36 12 L 37 14 L 39 13 L 38 15 L 40 16 L 38 16 L 37 18 L 36 16 L 34 16 L 36 15 Z" fill="#ffe680" opacity="0.8"/>
-                    <path d="M 50 24 L 51 26 L 53 25 L 52 27 L 54 28 L 52 28 L 51 30 L 50 28 L 48 28 L 50 27 Z" fill="#ffe680" opacity="0.8"/>
-                    
-                    <!-- Palm details -->
-                    <path d="M 27 40 Q 28 42 30 42" stroke="#0d8c6c" stroke-width="0.8" fill="none" opacity="0.5"/>
-                    <path d="M 28 44 Q 30 46 32 46" stroke="#0d8c6c" stroke-width="0.8" fill="none" opacity="0.5"/>
-                </svg>
+    <div class="container">
+        <!-- SIDEBAR - LOAN CONTROL PANEL -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>🤖 Dhanit AI</h1>
+                <p>Loan Advisor • Explains before deciding</p>
             </div>
-            <div>
-                <div class="logo-text">Dhanit</div>
-                <p style="font-size: 11px; margin: 2px 0 0 0; opacity: 0.9;">Simpler talks. Smarter loans.</p>
-            </div>
-        </div>
-        
-        <button class="new-chat-btn" id="newChatBtn">
-            <i class="fas fa-plus"></i>
-            New chat
-        </button>
-        
-        <div class="chat-history" id="chatHistory">
-            <!-- Chat history items will be dynamically added here -->
-        </div>
-        
-        <div class="sidebar-footer">
-            <div class="user-profile" id="userProfile">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <div class="user-name" id="userName">User Account</div>
-            </div>
-            <button class="header-action-btn" onclick="handleLogout()" style="width: 100%; justify-content: center; margin-top: 8px;">
-                <i class="fas fa-right-from-bracket"></i> Logout
+
+            <button class="new-chat-btn">
+                <i class="fas fa-plus"></i> New Chat
             </button>
-        </div>
-    </div>
-    
-    <!-- Main Chat Area -->
-    <div class="chat-container">
-        <div class="chat-header">
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="chat-title">Dhanit Assistant</div>
-            <div class="header-actions">
-                <button class="header-action-btn">
-                    <i class="fas fa-arrows-rotate"></i>
-                </button>
-                <button class="header-action-btn">
-                    <i class="fas fa-ellipsis-vertical"></i>
-                </button>
-            </div>
-        </div>
-        
-        <div class="messages-container" id="messagesContainer">
-            <!-- Welcome screen shown when no messages -->
-            <div class="welcome-screen" id="welcomeScreen">
-                <div class="welcome-avatar">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%237BB8CC;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%235FA3B8;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='100' cy='70' r='35' fill='%235FA3B8'/%3E%3Cpath d='M100 110 C70 110, 50 120, 40 160 L160 160 C150 120, 130 110, 100 110 Z' fill='url(%23grad1)'/%3E%3Crect x='70' y='115' width='60' height='35' rx='5' fill='%23ffffff'/%3E%3Cline x1='80' y1='125' x2='90' y2='125' stroke='%237BB8CC' stroke-width='2'/%3E%3Cline x1='110' y1='125' x2='120' y2='125' stroke='%237BB8CC' stroke-width='2'/%3E%3Cline x1='80' y1='135' x2='120' y2='135' stroke='%237BB8CC' stroke-width='2'/%3E%3Cpath d='M75 60 Q70 55, 75 50' stroke='%233d5a6b' stroke-width='3' fill='none'/%3E%3Cpath d='M125 60 Q130 55, 125 50' stroke='%233d5a6b' stroke-width='3' fill='none'/%3E%3Ccircle cx='85' cy='70' r='4' fill='%232c3e50'/%3E%3Ccircle cx='115' cy='70' r='4' fill='%232c3e50'/%3E%3Cpath d='M90 85 Q100 90, 110 85' stroke='%232c3e50' stroke-width='2' fill='none'/%3E%3Cpath d='M60 100 Q50 120, 60 140 L70 135 Q65 120, 70 105 Z' fill='%235FA3B8'/%3E%3Cpath d='M140 100 Q150 120, 140 140 L130 135 Q135 120, 130 105 Z' fill='%235FA3B8'/%3E%3C/svg%3E" alt="Assistant Avatar">
+
+            <!-- ELIGIBILITY STATUS PANEL -->
+            <div class="panel-section">
+                <div class="panel-section-title">📊 Eligibility Status</div>
+                <div class="status-card">
+                    <div class="status-icon success">✓</div>
+                    <div class="status-text">
+                        <div class="status-label">Home Loan</div>
+                        <div class="status-subtext">Verified</div>
+                    </div>
                 </div>
-                <h2 class="welcome-greeting">Hi, How may I help you?</h2>
-                <p class="welcome-message">Ask me anything about loans, investments, or financial planning</p>
+                <div class="status-card">
+                    <div class="status-icon warning">!</div>
+                    <div class="status-text">
+                        <div class="status-label">Credit Score</div>
+                        <div class="status-subtext">Needs review</div>
+                    </div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon pending">◐</div>
+                    <div class="status-text">
+                        <div class="status-label">Documents</div>
+                        <div class="status-subtext">2 missing</div>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Messages will be added here dynamically -->
+
+            <!-- PENDING ACTIONS -->
+            <div class="panel-section">
+                <div class="panel-section-title">⚠️ Next Steps</div>
+                <div class="pending-actions">
+                    <div class="action-item">
+                        <div class="action-label">Upload Salary Slip</div>
+                        <div class="action-desc">Required for verification</div>
+                    </div>
+                    <div class="action-item">
+                        <div class="action-label">Verify Employment</div>
+                        <div class="action-desc">Pending confirmation</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RECENT CHATS -->
+            <div class="panel-section" style="flex: 1; display: flex; flex-direction: column;">
+                <div class="panel-section-title">🕘 Recent</div>
+                <div class="recent-chats">
+                    <div class="chat-item">Home Loan Eligibility</div>
+                    <div class="chat-item">Document Requirements</div>
+                    <div class="chat-item">Interest Rate Comparison</div>
+                </div>
+            </div>
         </div>
-        
-        <div class="input-container">
-            <div class="input-wrapper">
-                <button class="upload-button" id="uploadButton" title="Upload document">
-                    <i class="fas fa-paperclip"></i>
-                </button>
-                <input type="file" id="fileInput" accept="image/*,.pdf,.doc,.docx" style="display: none;">
-                <textarea class="chat-input" id="chatInput" placeholder="Message Dhanit..." rows="1"></textarea>
-                <button class="mic-button" id="micButton" title="Voice input">
-                    <i class="fas fa-microphone"></i>
-                </button>
-                <button class="send-button" id="sendButton">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
+
+        <!-- MAIN CHAT AREA -->
+        <div class="chat-area">
+            <!-- HEADER WITH AI PRESENCE -->
+            <div class="chat-header">
+                <div class="ai-presence">
+                    <div class="ai-avatar">🤖</div>
+                    <div class="ai-info">
+                        <h3>Dhanit AI</h3>
+                        <div class="ai-status">
+                            <span class="status-dot"></span>
+                            <span id="statusText">Analyzing eligibility…</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" title="Help">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
+                    <button class="header-btn" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
             </div>
-            <div class="input-footer">
-                Dhanit can make mistakes. Consider checking important information.
+
+            <!-- MESSAGES AREA -->
+            <div class="messages" id="messagesContainer">
+                <div class="welcome-state">
+                    <h2>How can I help you today?</h2>
+                    <p>I explain loan eligibility, guide you through requirements, and help you choose the right option for your needs.</p>
+                    
+                    <div class="suggested-questions">
+                        <div class="question-chip">Am I eligible for a home loan?</div>
+                        <div class="question-chip">What documents do I need?</div>
+                        <div class="question-chip">Why was my loan rejected?</div>
+                        <div class="question-chip">Which loan suits my income?</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INPUT AREA -->
+            <div class="input-area">
+                <div class="input-hint" id="inputHint">Ask about eligibility, documents, or loan options…</div>
+                <div class="input-wrapper">
+                    <textarea class="input-field" id="chatInput" placeholder="Type your question..." rows="1"></textarea>
+                    <div class="input-actions">
+                        <button class="input-btn" title="Attach document">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <button class="input-btn" id="sendBtn" title="Send message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check if user is logged in
-            const isLoggedIn = localStorage.getItem('Dhanit_logged_in');
-            // if (!isLoggedIn) {
-            //     // Redirect to home page if not logged in
-            //     window.location.href = '/';
-            //     return;
-            // }
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const messagesContainer = document.getElementById('messagesContainer');
+        const inputHint = document.getElementById('inputHint');
+        const questionChips = document.querySelectorAll('.question-chip');
+        const statusText = document.getElementById('statusText');
 
-            // Update user profile display
-            const userName = localStorage.getItem('Dhanit_user_name') || 'User';
-            const userNameEl = document.getElementById('userName');
-            const userAvatarEl = document.getElementById('userAvatar');
-            
-            if (userNameEl) {
-                userNameEl.textContent = userName;
-            }
-            if (userAvatarEl) {
-                userAvatarEl.textContent = userName.charAt(0).toUpperCase();
-            }
-            
-            const chatInput = document.getElementById('chatInput');
-            const sendButton = document.getElementById('sendButton');
-            const uploadButton = document.getElementById('uploadButton');
-            const fileInput = document.getElementById('fileInput');
-            const micButton = document.getElementById('micButton');
-            const messagesContainer = document.getElementById('messagesContainer');
-            const welcomeScreen = document.getElementById('welcomeScreen');
-            const newChatBtn = document.getElementById('newChatBtn');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const sidebar = document.getElementById('sidebar');
-            const exampleCards = document.querySelectorAll('.example-card');
-            const chatHistory = document.getElementById('chatHistory');
-            
-            // Speech recognition setup
-            let recognition = null;
-            let isRecording = false;
-            
-            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                recognition = new SpeechRecognition();
-                recognition.continuous = false;
-                recognition.interimResults = false;
-                recognition.lang = 'en-US';
-                
-                recognition.onstart = function() {
-                    isRecording = true;
-                    micButton.classList.add('recording');
-                    micButton.innerHTML = '<i class="fas fa-stop"></i>';
-                };
-                
-                recognition.onresult = function(event) {
-                    const transcript = event.results[0][0].transcript;
-                    chatInput.value = transcript;
-                    chatInput.style.height = 'auto';
-                    chatInput.style.height = (chatInput.scrollHeight) + 'px';
-                };
-                
-                recognition.onerror = function(event) {
-                    console.error('Speech recognition error:', event.error);
-                    alert('Error with speech recognition: ' + event.error);
-                };
-                
-                recognition.onend = function() {
-                    isRecording = false;
-                    micButton.classList.remove('recording');
-                    micButton.innerHTML = '<i class="fas fa-microphone"></i>';
-                };
-            }
-            
-            // Microphone button click handler
-            micButton.addEventListener('click', function() {
-                if (!recognition) {
-                    alert('Speech recognition is not supported in your browser. Please use Chrome, Edge, or Safari.');
-                    return;
-                }
-                
-                if (isRecording) {
-                    recognition.stop();
-                } else {
-                    recognition.start();
-                }
-            });
-            
-            // Upload button click handler
-            uploadButton.addEventListener('click', function() {
-                fileInput.click();
-            });
-            
-            // File input change handler
-            fileInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    // Hide welcome screen if it's the first message
-                    if (welcomeScreen.style.display !== 'none') {
-                        welcomeScreen.style.display = 'none';
-                    }
-                    
-                    // Add file upload message
-                    const fileMessage = `📎 Uploaded: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
-                    addMessage(fileMessage, 'user');
-                    
-                    // Show typing indicator
-                    showTypingIndicator();
-                    
-                    // Simulate AI response
-                    setTimeout(() => {
-                        removeTypingIndicator();
-                        const response = `I've received your document "${file.name}". I can help you analyze this document for loan requirements, eligibility criteria, or any financial information. What would you like to know about it?`;
-                        addMessage(response, 'bot');
-                    }, 1500);
-                    
-                    // Reset file input
-                    fileInput.value = '';
-                }
-            });
-            
-            // Chat history management
-            let chatSessions = JSON.parse(localStorage.getItem('Dhanit_chat_sessions') || '[]');
-            let currentChatId = null;
-            
-            // Initialize chat history
-            function initializeChatHistory() {
-                renderChatHistory();
-                if (chatSessions.length === 0) {
-                    createNewChat();
-                } else {
-                    loadChat(chatSessions[0].id);
-                }
-            }
-            
-            // Render chat history in sidebar
-            function renderChatHistory() {
-                chatHistory.innerHTML = '';
-                
-                chatSessions.forEach(session => {
-                    const historyItem = document.createElement('div');
-                    historyItem.className = `chat-history-item ${session.id === currentChatId ? 'active' : ''}`;
-                    historyItem.innerHTML = `
-                        <i class="fas fa-message"></i>
-                        <span>${session.title}</span>
-                        <button class="delete-btn" onclick="event.stopPropagation(); deleteChat('${session.id}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    `;
-                    historyItem.addEventListener('click', () => loadChat(session.id));
-                    chatHistory.appendChild(historyItem);
-                });
-            }
-            
-            // Create new chat session
-            function createNewChat() {
-                const userName = localStorage.getItem('Dhanit_user_name') || 'there';
-                const newSession = {
-                    id: 'chat_' + Date.now(),
-                    title: 'New Chat',
-                    messages: [
-                        {
-                            text: `Hi, How may I help you?`,
-                            sender: 'bot',
-                            timestamp: Date.now()
-                        }
-                    ],
-                    createdAt: new Date().toISOString()
-                };
-                
-                chatSessions.unshift(newSession);
-                saveChatSessions();
-                loadChat(newSession.id);
-                renderChatHistory();
-            }
-            
-            // Load chat session
-            function loadChat(chatId) {
-                currentChatId = chatId;
-                const session = chatSessions.find(s => s.id === chatId);
-                
-                if (!session) return;
-                
-                // Clear messages container
-                messagesContainer.innerHTML = '';
-                
-                // Show welcome screen if no messages
-                if (session.messages.length === 0) {
-                    welcomeScreen.style.display = 'flex';
-                } else {
-                    welcomeScreen.style.display = 'none';
-                    // Load messages
-                    session.messages.forEach(msg => {
-                        addMessageToUI(msg.text, msg.sender);
-                    });
-                }
-                
-                renderChatHistory();
-            }
-            
-            // Delete chat session
-            window.deleteChat = function(chatId) {
-                if (confirm('Are you sure you want to delete this chat?')) {
-                    chatSessions = chatSessions.filter(s => s.id !== chatId);
-                    saveChatSessions();
-                    
-                    if (currentChatId === chatId) {
-                        if (chatSessions.length > 0) {
-                            loadChat(chatSessions[0].id);
-                        } else {
-                            createNewChat();
-                        }
-                    } else {
-                        renderChatHistory();
-                    }
-                }
-            };
-            
-            // Save chat sessions to localStorage
-            function saveChatSessions() {
-                localStorage.setItem('Dhanit_chat_sessions', JSON.stringify(chatSessions));
-            }
-            
-            // Update chat title based on first message
-            function updateChatTitle(firstMessage) {
-                const session = chatSessions.find(s => s.id === currentChatId);
-                if (session && session.title === 'New Chat') {
-                    session.title = firstMessage.substring(0, 30) + (firstMessage.length > 30 ? '...' : '');
-                    saveChatSessions();
-                    renderChatHistory();
-                }
-            }
-            
-            // Save message to current session
-            function saveMessage(text, sender) {
-                const session = chatSessions.find(s => s.id === currentChatId);
-                if (session) {
-                    session.messages.push({ text, sender, timestamp: new Date().toISOString() });
-                    saveChatSessions();
-                    
-                    // Update title if it's the first user message
-                    if (sender === 'user' && session.messages.filter(m => m.sender === 'user').length === 1) {
-                        updateChatTitle(text);
-                    }
-                }
-            }
-            
-            // Initialize
-            initializeChatHistory();
-            
-            // Personalize welcome message with user's name
-            if (userName) {
-                const welcomeTitle = document.querySelector('.welcome-title');
-                if (welcomeTitle) {
-                    welcomeTitle.textContent = `Welcome back, ${userName}!`;
-                }
-            }
-            
-            // Auto-resize textarea
-            chatInput.addEventListener('input', function() {
-                this.style.height = 'auto';
-                this.style.height = (this.scrollHeight) + 'px';
-            });
-            
-            // Send message on button click
-            sendButton.addEventListener('click', sendMessage);
-            
-            // Send message on Enter key (but allow Shift+Enter for new line)
-            chatInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    sendMessage();
-                }
-            });
-            
-            // Example card click handler
-            exampleCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const prompt = this.getAttribute('data-prompt');
-                    chatInput.value = prompt;
-                    sendMessage();
-                });
-            });
-            
-            // New chat button
-            newChatBtn.addEventListener('click', function() {
-                createNewChat();
-            });
-            
-            // Mobile menu toggle
-            mobileMenuBtn.addEventListener('click', function() {
-                sidebar.classList.toggle('open');
-            });
-            
-           async function sendMessage() {
-    const message = chatInput.value.trim();
-    if (message === '') return;
+        const statuses = [
+            'Analyzing eligibility…',
+            'Reviewing documents…',
+            'Checking requirements…',
+            'Waiting for your input…'
+        ];
+        let statusIndex = 0;
 
-    // Hide welcome screen if it's the first message
-    if (welcomeScreen.style.display !== 'none') {
-        welcomeScreen.style.display = 'none';
-    }
+        // Rotate status text
+        setInterval(() => {
+            statusIndex = (statusIndex + 1) % statuses.length;
+            statusText.textContent = statuses[statusIndex];
+        }, 4000);
 
-    // Add user message
-    addMessage(message, 'user');
-
-    // Clear input and reset height
-    chatInput.value = '';
-    chatInput.style.height = 'auto';
-
-    // Show typing indicator
-    showTypingIndicator();
-
-    try {
-        const res = await fetch('/api/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ message })
+        // Auto-resize textarea
+        chatInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
         });
 
-        const data = await res.json();
+        // Dynamic input hints
+        chatInput.addEventListener('focus', function() {
+            inputHint.textContent = 'You can ask in simple language…';
+        });
 
-        removeTypingIndicator();
-
-        addMessage(data.message || JSON.stringify(data), 'bot');
-
-    } catch (err) {
-        removeTypingIndicator();
-        addMessage("⚠️ Server error. Is Flask running?", 'bot');
-        console.error(err);
-    }
-}
- 
-            // Function to add a message to the chat
-            function addMessage(text, sender) {
-                saveMessage(text, sender);
-                addMessageToUI(text, sender);
-            }
-            
-            // Function to add message to UI only
-            function addMessageToUI(text, sender) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${sender}-message`;
-                
-                const avatarDiv = document.createElement('div');
-                avatarDiv.className = 'message-avatar';
-                avatarDiv.innerHTML = sender === 'user' ? 'U' : '👨‍💼';
-                
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'message-content';
-                
-                const textDiv = document.createElement('div');
-                textDiv.className = 'message-text';
-                textDiv.textContent = text;
-                
-                const actionsDiv = document.createElement('div');
-                actionsDiv.className = 'message-actions';
-                actionsDiv.innerHTML = `
-                    <button class="message-action"><i class="fas fa-copy"></i></button>
-                    <button class="message-action"><i class="fas fa-thumbs-up"></i></button>
-                    <button class="message-action"><i class="fas fa-thumbs-down"></i></button>
-                `;
-                
-                contentDiv.appendChild(textDiv);
-                contentDiv.appendChild(actionsDiv);
-                
-                messageDiv.appendChild(avatarDiv);
-                messageDiv.appendChild(contentDiv);
-                
-                messagesContainer.appendChild(messageDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }
-            
-            // Function to show typing indicator
-            function showTypingIndicator() {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message bot-message';
-                
-                const avatarDiv = document.createElement('div');
-                avatarDiv.className = 'message-avatar';
-                avatarDiv.innerHTML = 'N';
-                
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'message-content';
-                
-                const typingDiv = document.createElement('div');
-                typingDiv.className = 'typing-indicator';
-                typingDiv.innerHTML = `
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                `;
-                
-                contentDiv.appendChild(typingDiv);
-                messageDiv.appendChild(avatarDiv);
-                messageDiv.appendChild(contentDiv);
-                
-                messagesContainer.appendChild(messageDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }
-            
-            // Function to remove typing indicator
-            function removeTypingIndicator() {
-                const messages = messagesContainer.querySelectorAll('.message');
-                const lastMessage = messages[messages.length - 1];
-                if (lastMessage && lastMessage.querySelector('.typing-indicator')) {
-                    lastMessage.remove();
-                }
-            }
-            
-            // Function to generate AI response based on user message
-            function generateResponse(userMessage) {
-                const lowerMessage = userMessage.toLowerCase();
-                
-                if (lowerMessage.includes('personal loan') || lowerMessage.includes('personal')) {
-                    return "Based on your query about personal loans, I can provide information on:\n\n• Current interest rates (10.5% - 15%)\n• Eligibility criteria\n• Required documents\n• EMI calculations\n\nWould you like me to focus on any specific aspect, or would you prefer a comparison with other loan types?";
-                } else if (lowerMessage.includes('home loan') || lowerMessage.includes('home') || lowerMessage.includes('house')) {
-                    return "For home loans, here are the key details:\n\n• Interest rates: 8.4% - 11% (floating), 8.8% - 11.5% (fixed)\n• Maximum tenure: Up to 30 years\n• Loan-to-value ratio: Up to 90%\n• Processing fees: 0.5% - 1% of loan amount\n\nI can help you calculate EMI, check eligibility, or compare different banks. What specific information do you need?";
-                } else if (lowerMessage.includes('education loan') || lowerMessage.includes('education') || lowerMessage.includes('student')) {
-                    return "Education loans are great for funding your studies. Key features include:\n\n• Cover tuition fees, accommodation, books, and other expenses\n• Moratorium period during course duration\n• Interest rates: 9.2% - 12%\n• Tax benefits under Section 80E\n\nAre you looking for domestic or international education financing?";
-                } else if (lowerMessage.includes('business loan') || lowerMessage.includes('business') || lowerMessage.includes('startup')) {
-                    return "Business loans can help grow your enterprise. Important aspects:\n\n• Loan amount: Up to ₹2 crores\n• Interest rates: 11.8% - 16%\n• Collateral requirements vary\n• Quick disbursal for established businesses\n\nCould you share more about your business type and requirements for personalized advice?";
-                } else if (lowerMessage.includes('investment') || lowerMessage.includes('invest') || lowerMessage.includes('mutual fund')) {
-                    return "For investments, consider these options based on your risk profile:\n\n• Low risk: Fixed deposits, debt funds, government bonds\n• Medium risk: Hybrid funds, balanced advantage funds\n• High risk: Equity funds, stocks, sectoral funds\n\nWhat's your investment horizon and risk tolerance? I can suggest suitable options.";
-                } else if (lowerMessage.includes('eligibility') || lowerMessage.includes('qualify')) {
-                    return "To check loan eligibility, I typically need:\n\n• Age (usually 21-60 years)\n• Monthly/annual income\n• Employment type (salaried/self-employed)\n• Credit score\n• Existing financial obligations\n\nWould you like to check eligibility for a specific loan type?";
-                } else if (lowerMessage.includes('interest rate') || lowerMessage.includes('rate')) {
-                    return "Current interest rates for different loans:\n\n• Personal Loan: 10.5% - 15%\n• Home Loan: 8.4% - 11%\n• Education Loan: 9.2% - 12%\n• Business Loan: 11.8% - 16%\n• Car Loan: 8.9% - 12.5%\n\nRates vary based on credit score, income, loan amount, and tenure. Would you like more specific information?";
-                } else if (lowerMessage.includes('emi') || lowerMessage.includes('calculator')) {
-                    return "I can help calculate your EMI. For example:\n\n• Loan amount: ₹10,00,000\n• Interest rate: 10.5%\n• Tenure: 5 years (60 months)\n• Your EMI would be approximately ₹21,500\n\nWould you like to calculate EMI for your specific loan amount and tenure?";
-                } else {
-                    return "I understand you're interested in financial products. I specialize in loans (personal, home, education, business) and investments. Could you specify which area you'd like to explore, or ask about interest rates, eligibility, EMI calculations, or document requirements?";
-                }
+        chatInput.addEventListener('blur', function() {
+            if (!this.value) {
+                inputHint.textContent = 'Ask about eligibility, documents, or loan options…';
             }
         });
 
-        // Handle Logout (outside DOMContentLoaded to be accessible globally)
-        function handleLogout() {
-            if (confirm('Are you sure you want to logout?')) {
-                localStorage.removeItem('Dhanit_logged_in');
-                localStorage.removeItem('Dhanit_user_email');
-                localStorage.removeItem('Dhanit_user_name');
-                localStorage.removeItem('Dhanit_user_phone');
-                alert('You have been logged out successfully.');
-                window.location.href = 'home.html';
-            }
+        // Send message
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Clear input
+            chatInput.value = '';
+            chatInput.style.height = 'auto';
+
+            // Remove welcome state if exists
+            const welcomeState = messagesContainer.querySelector('.welcome-state');
+            if (welcomeState) welcomeState.remove();
+
+            // Add user message
+            addMessage(message, 'user');
+
+            // Simulate AI response
+            setTimeout(() => {
+                addAIResponse();
+            }, 1000);
         }
+
+        function addMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${type === 'user' ? '👤' : '🤖'}</div>
+                <div class="message-bubble">${text}</div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function addAIResponse() {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message ai';
+            messageDiv.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div style="flex: 1;">
+                    <div class="message-bubble">
+                        <div class="typing-indicator">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Replace with actual response after delay
+            setTimeout(() => {
+                messageDiv.innerHTML = `
+                    <div class="message-avatar">🤖</div>
+                    <div style="flex: 1;">
+                        <div class="message-bubble">
+                            Based on your profile, here's what I found:
+                        </div>
+                        <div class="ai-card">
+                            <div class="ai-card-title">🏠 Home Loan Eligibility</div>
+                            <div class="ai-card-item success">Income: ₹50,000+ ✓</div>
+                            <div class="ai-card-item warning">Credit Score: Needs review</div>
+                            <div class="ai-card-item pending">Employment: Verifying</div>
+                            <div class="ai-card-actions">
+                                <button class="ai-action-btn">Upload Document</button>
+                                <button class="ai-action-btn">Why This Matters?</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 2000);
+        }
+
+        // Event listeners
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Question chips
+        questionChips.forEach(chip => {
+            chip.addEventListener('click', function() {
+                chatInput.value = this.textContent;
+                chatInput.focus();
+                sendMessage();
+            });
+        });
     </script>
-    </div> <!-- End main-container -->
 </body>
 </html>

@@ -7,12 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4f46e5;
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
       --secondary: #0f172a;
       --muted: #64748b;
-      --bg: #f8fafc;
+      --bg: #f0f4f8;
       --card: #ffffff;
-      --accent: #22c55e;
+      --accent: #10b981;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,12 +26,19 @@
 
     /* NAVBAR */
     header {
-      background: #fff;
-      border-bottom: 1px solid #e5e7eb;
+      background: #ffffff;
+      border-bottom: 1px solid #e8eef7;
       position: sticky;
       top: 0;
       z-index: 100;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
+
+    header.scrolled {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
     .nav {
       max-width: 1200px;
       margin: auto;
@@ -38,17 +46,104 @@
       align-items: center;
       justify-content: space-between;
       padding: 16px 24px;
+      height: 72px;
     }
-    .logo {
-      font-weight: 700;
-      font-size: 22px;
-      color: var(--primary);
-    }
-    .nav a {
-      margin-left: 24px;
+
+    /* BRAND SECTION */
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-      color: var(--secondary);
-      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 18px;
+      color: #1a2332;
+      letter-spacing: -0.3px;
+    }
+
+    /* RIGHT SECTION - AUTH BUTTONS */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .nav-login {
+      background: transparent;
+      color: #5a6b7a;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-login:hover {
+      color: #1a2332;
+      border-color: #cbd5e1;
+      background: #f8fafc;
+    }
+
+    .nav-signup {
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .nav-signup:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .nav-signup:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        padding: 12px 16px;
+        height: 64px;
+      }
+
+      .brand-name {
+        font-size: 16px;
+      }
+
+      .nav-login,
+      .nav-signup {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
     }
 
     /* HERO */
@@ -386,9 +481,9 @@
     }
     
     .chat.ai {
-      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
       color: white;
-      box-shadow: 0 10px 25px rgba(79,70,229,0.4);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
     }
     
     .chat.ai ul {
@@ -436,7 +531,7 @@
     }
     
     .chat-input button {
-      background: #4f46e5;
+      background: #2563eb;
       color: white;
       border: none;
       border-radius: 12px;
@@ -447,7 +542,7 @@
     }
     
     .chat-input button:hover {
-      background: #3f35d5;
+      background: #1e40af;
     }
     
     .why-right h2 {
@@ -607,7 +702,7 @@
     }
     
     .feature-card .btn-primary {
-      background: #5eb3ff;
+      background: #3b82f6;
       padding: 12px 24px;
       font-size: 14px;
     }
@@ -692,7 +787,7 @@
     }
     
     .loan-card .btn-primary {
-      background: #5eb3ff;
+      background: #3b82f6;
       padding: 12px 28px;
       font-size: 14px;
       width: 100%;
@@ -761,13 +856,13 @@
     }
     
     .footer-cta .btn-primary {
-      background: #5eb3ff;
+      background: #3b82f6;
       padding: 16px 40px;
       font-size: 16px;
     }
     
     .footer-cta .btn-primary:hover {
-      background: #4a9eff;
+      background: #2563eb;
     }
     
     .footer-content {
@@ -824,6 +919,17 @@
 <body>
 
 <script>
+// Scroll effect on header
+window.addEventListener('scroll', function() {
+  const header = document.getElementById('header');
+  if (window.scrollY > 10) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
+// Chat input functionality
 document.addEventListener('DOMContentLoaded', function() {
   const input = document.querySelector(".chat-input input");
   const button = document.querySelector(".chat-input button");
@@ -838,15 +944,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<header>
+<header id="header">
   <div class="nav">
-    <div class="logo">DhanitAI</div>
-    <nav>
-      <a href="#">Loan Schemes</a>
-      <a href="#">How It Works</a>
-      <a href="#">AI Assistant</a>
-      <a href="#">Login</a>
-    </nav>
+    <!-- BRAND SECTION -->
+    <a href="#" class="nav-brand">
+      <div class="brand-icon">D</div>
+      <div class="brand-name">DhanitAI</div>
+    </a>
+
+    <!-- RIGHT SECTION - AUTH BUTTONS -->
+    <div class="nav-right">
+      <button class="nav-login">Login</button>
+      <button class="nav-signup">Sign Up</button>
+    </div>
   </div>
 </header>
 
