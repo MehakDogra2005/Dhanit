@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - DhanitAI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sidebar-styles.css">
+    <style>
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .analytics-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title i {
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .stat-change {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .stat-change.positive {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .stat-change.negative {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 200px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            border: 1px dashed rgba(37, 99, 235, 0.3);
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .metric-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .metric-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 1024px) {
+            .analytics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <div id="sidebar-container"></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- TOP NAV -->
+        <div class="top-nav">
+            <div style="flex: 1;">
+                <h1 class="page-title" style="margin: 0; font-size: 18px;">Analytics</h1>
+            </div>
+            <div class="nav-right">
+                <button class="nav-icon-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <div class="nav-divider"></div>
+                <div class="user-profile">
+                    <div class="user-avatar">SR</div>
+                    <div class="user-name">Sarah Rodriguez</div>
+                    <i class="fas fa-chevron-down" style="font-size: 12px; color: var(--text-muted);"></i>
+                </div>
+                <button class="nav-icon-btn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- PAGE CONTENT -->
+        <div class="page-content">
+            <div class="page-header">
+                <h1 class="page-title">Insights & Analytics</h1>
+                <p class="page-subtitle">View detailed analytics and insights about your loan application</p>
+            </div>
+
+            <div class="analytics-grid">
+                <!-- Application Status -->
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie"></i>
+                            Application Status
+                        </h3>
+                    </div>
+                    <div class="stat-value">85%</div>
+                    <div class="stat-label">Completion Progress</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                    <div style="margin-top: 16px;">
+                        <span class="stat-change positive">↑ On Track</span>
+                    </div>
+                </div>
+
+                <!-- Document Verification -->
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-file-check"></i>
+                            Documents
+                        </h3>
+                    </div>
+                    <div class="stat-value">4/4</div>
+                    <div class="stat-label">Documents Verified</div>
+                    <div style="margin-top: 16px;">
+                        <span class="stat-change positive">✓ Complete</span>
+                    </div>
+                </div>
+
+                <!-- Credit Score -->
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-star"></i>
+                            Credit Score
+                        </h3>
+                    </div>
+                    <div class="stat-value">745</div>
+                    <div class="stat-label">Credit Score Rating</div>
+                    <div style="margin-top: 16px;">
+                        <span class="stat-change positive">↑ Good</span>
+                    </div>
+                </div>
+
+                <!-- Processing Time -->
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-hourglass-end"></i>
+                            Processing
+                        </h3>
+                    </div>
+                    <div class="stat-value">3 days</div>
+                    <div class="stat-label">Average Processing Time</div>
+                    <div style="margin-top: 16px;">
+                        <span class="stat-change positive">↓ Fast</span>
+                    </div>
+                </div>
+
+                <!-- Approval Probability -->
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-thumbs-up"></i>
+                            Approval
+                        </h3>
+                    </div>
+                    <div class="stat-value">94%</div>
+                    <div class="stat-label">Approval Probability</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 94%;"></div>
+                    </div>
+                </div>
+
+                <!-- Risk Assessment -->
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-shield-alt"></i>
+                            Risk Level
+                        </h3>
+                    </div>
+                    <div class="stat-value">Low</div>
+                    <div class="stat-label">Overall Risk Assessment</div>
+                    <div style="margin-top: 16px;">
+                        <span class="stat-change positive">✓ Safe</span>
+                    </div>
+                </div>
+
+                <!-- Financial Metrics -->
+                <div class="analytics-card" style="grid-column: span 1;">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-line"></i>
+                            Financial Metrics
+                        </h3>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Monthly Income</span>
+                        <span class="metric-value">₹85,000</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Proposed EMI</span>
+                        <span class="metric-value">₹1,540</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">EMI Ratio</span>
+                        <span class="metric-value">1.8%</span>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="analytics-card" style="grid-column: span 1;">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-timeline"></i>
+                            Timeline
+                        </h3>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Application Date</span>
+                        <span class="metric-value">Jan 15, 2024</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Verification</span>
+                        <span class="metric-value">Jan 18, 2024</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Expected Approval</span>
+                        <span class="metric-value">Jan 25, 2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load sidebar component -->
+    <script>
+        fetch('sidebar.html')
+            .then(response => response.text())
+            .then(html => {
+                const container = document.getElementById('sidebar-container');
+                container.innerHTML = html;
+                initSidebar();
+            })
+            .catch(error => console.error('Error loading sidebar:', error));
+
+        function initSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggleBtn');
+
+            if (!sidebar || !toggleBtn) return;
+
+            const sidebarState = localStorage.getItem('sidebarCollapsed') === 'true';
+            if (sidebarState) {
+                sidebar.classList.add('collapsed');
+                updateToggleButton();
+            }
+
+            toggleBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                sidebar.classList.toggle('collapsed');
+                updateToggleButton();
+                const isCollapsed = sidebar.classList.contains('collapsed');
+                localStorage.setItem('sidebarCollapsed', isCollapsed);
+            });
+
+            function updateToggleButton() {
+                const isCollapsed = sidebar.classList.contains('collapsed');
+                if (isCollapsed) {
+                    toggleBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    toggleBtn.title = 'Expand sidebar';
+                } else {
+                    toggleBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                    toggleBtn.title = 'Collapse sidebar';
+                }
+            }
+
+            function setActiveNavItem() {
+                const currentPage = window.location.pathname.split('/').pop() || 'dashboard.html';
+                const navItems = document.querySelectorAll('.nav-item');
+                
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    const href = item.getAttribute('href');
+                    if (href === currentPage || (currentPage === '' && href === 'dashboard.html')) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+
+            setActiveNavItem();
+        }
+    </script>
+</body>
+</html>
