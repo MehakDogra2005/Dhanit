@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -473,8 +474,317 @@
                 font-size: 24px;
             }
         }
+
+        /* CALM STATUS BANNER */
+        .status-banner {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+        }
+
+        .status-banner-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .status-banner-content {
+            flex: 1;
+        }
+
+        .status-banner-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 4px;
+        }
+
+        .status-banner-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* PROGRESS SECTION */
+        .progress-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .progress-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .progress-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-count {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar-wrapper {
+            width: 100%;
+            height: 10px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success) 0%, #34d399 100%);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        /* VERIFICATION FLOW */
+        .verification-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .flow-step.completed {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .flow-step.in-progress {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        .flow-step.pending {
+            background: rgba(156, 163, 175, 0.15);
+            color: var(--text-muted);
+        }
+
+        .flow-connector {
+            width: 24px;
+            height: 2px;
+            background: var(--border);
+        }
+
+        .flow-connector.completed {
+            background: var(--success);
+        }
+
+        /* ENHANCED CARDS */
+        .verification-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .card-summary {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .card-summary i {
+            font-size: 14px;
+        }
+
+        .card-summary.secure {
+            color: var(--success);
+        }
+
+        .card-summary.info {
+            color: var(--primary);
+        }
+
+        .time-estimate {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--warning);
+        }
+
+        .no-action-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 8px 12px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .auto-refresh-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .auto-refresh-hint i {
+            font-size: 10px;
+        }
+
+        /* WHAT HAPPENS NEXT */
+        .next-steps-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .next-steps-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .next-steps-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .next-steps-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .next-steps-content {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .process-flow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 10px;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .process-step.current {
+            color: var(--primary);
+        }
+
+        .process-step.upcoming {
+            color: var(--text-muted);
+        }
+
+        .process-arrow {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* SUPPORT SECTION */
+        .support-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .support-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(107, 114, 128, 0.1);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .support-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .support-text strong {
+            color: var(--text-secondary);
+        }
     </style>
 </head>
+
 <body>
     <div class="sidebar" id="sidebar">
         <div class="logo">
@@ -484,7 +794,7 @@
                 <i class="fas fa-chevron-left"></i>
             </button>
         </div>
-        
+
         <div class="nav-items">
             <div class="nav-section-title">My Loan</div>
             <a href="dashboard.html" class="nav-item" title="Dashboard">
@@ -524,6 +834,20 @@
                 <span class="nav-label">Settings</span>
             </a>
         </div>
+
+        <!-- USER PROFILE SECTION AT BOTTOM -->
+        <div class="user-section">
+            <div class="user-profile-bottom">
+                <div class="user-avatar-bottom" id="userAvatarBottom">SR</div>
+                <div class="user-info-bottom">
+                    <div class="user-name-bottom" id="userNameBottom">Sarah Rodriguez</div>
+                    <div class="user-email-bottom" id="userEmailBottom">sarah@email.com</div>
+                </div>
+            </div>
+            <button class="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
     </div>
 
     <div class="main-content">
@@ -553,7 +877,50 @@
                 <p class="page-subtitle">Track your document and identity verification status</p>
             </div>
 
+            <!-- CALM STATUS BANNER -->
+            <div class="status-banner">
+                <div class="status-banner-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="status-banner-content">
+                    <div class="status-banner-title">Your verification is progressing smoothly</div>
+                    <div class="status-banner-text">Most checks are completed. No action is required from you at this
+                        moment.</div>
+                </div>
+            </div>
+
+            <!-- PROGRESS SECTION -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <span class="progress-title">Verification Progress</span>
+                    <span class="progress-count">2 of 3 checks completed (67%)</span>
+                </div>
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-fill" style="width: 67%;"></div>
+                </div>
+            </div>
+
+            <!-- VERIFICATION FLOW INDICATOR -->
+            <div class="verification-flow">
+                <div class="flow-step completed">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Aadhaar</span>
+                </div>
+                <div class="flow-connector completed"></div>
+                <div class="flow-step completed">
+                    <i class="fas fa-check-circle"></i>
+                    <span>PAN</span>
+                </div>
+                <div class="flow-connector"></div>
+                <div class="flow-step in-progress">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>AML</span>
+                </div>
+            </div>
+
+            <!-- VERIFICATION CARDS -->
             <div class="verification-grid">
+                <!-- Aadhaar Card -->
                 <div class="verification-card">
                     <div class="verification-header">
                         <div class="verification-icon verified">
@@ -561,7 +928,7 @@
                         </div>
                         <div>
                             <div class="verification-title">Aadhaar Verification</div>
-                            <div class="verification-status">Verified</div>
+                            <div class="verification-status">Completed</div>
                         </div>
                     </div>
                     <div class="verification-content">
@@ -574,8 +941,13 @@
                             <span>Address verified</span>
                         </div>
                     </div>
+                    <div class="card-summary secure">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Your identity is secure</span>
+                    </div>
                 </div>
 
+                <!-- PAN Card -->
                 <div class="verification-card">
                     <div class="verification-header">
                         <div class="verification-icon verified">
@@ -583,21 +955,26 @@
                         </div>
                         <div>
                             <div class="verification-title">PAN Verification</div>
-                            <div class="verification-status">Verified</div>
+                            <div class="verification-status">Completed</div>
                         </div>
                     </div>
                     <div class="verification-content">
                         <div class="verification-item">
                             <i class="fas fa-check-circle"></i>
-                            <span>Tax ID confirmed</span>
+                            <span>Tax ID matched</span>
                         </div>
                         <div class="verification-item">
                             <i class="fas fa-check-circle"></i>
-                            <span>Name matched</span>
+                            <span>Name verified</span>
                         </div>
+                    </div>
+                    <div class="card-summary secure">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Financial identity confirmed</span>
                     </div>
                 </div>
 
+                <!-- AML Card -->
                 <div class="verification-card">
                     <div class="verification-header">
                         <div class="verification-icon pending">
@@ -610,14 +987,63 @@
                     </div>
                     <div class="verification-content">
                         <div class="verification-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Database check initiated</span>
-                        </div>
-                        <div class="verification-item">
-                            <i class="fas fa-hourglass-half"></i>
-                            <span>Awaiting results</span>
+                            <i class="fas fa-hourglass-half" style="color: var(--warning);"></i>
+                            <span>Background screening in progress</span>
                         </div>
                     </div>
+                    <div class="time-estimate">
+                        <i class="fas fa-clock"></i>
+                        <span>Estimated completion: within 24–48 hours</span>
+                    </div>
+                    <div class="no-action-badge">
+                        <i class="fas fa-info-circle"></i>
+                        <span>No action required from you</span>
+                    </div>
+                    <div class="auto-refresh-hint">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Status updates automatically</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WHAT HAPPENS NEXT -->
+            <div class="next-steps-card">
+                <div class="next-steps-header">
+                    <div class="next-steps-icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="next-steps-title">What happens next?</div>
+                </div>
+                <div class="next-steps-content">
+                    Once AML verification is completed, your application will automatically move to
+                    <strong>Underwriting</strong>. Our team will evaluate your eligibility and loan terms.
+                </div>
+                <div class="process-flow">
+                    <div class="process-step current">
+                        <i class="fas fa-search"></i>
+                        <span>Verification</span>
+                    </div>
+                    <i class="fas fa-chevron-right process-arrow"></i>
+                    <div class="process-step upcoming">
+                        <i class="fas fa-calculator"></i>
+                        <span>Underwriting</span>
+                    </div>
+                    <i class="fas fa-chevron-right process-arrow"></i>
+                    <div class="process-step upcoming">
+                        <i class="fas fa-stamp"></i>
+                        <span>Sanction</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUPPORT SECTION -->
+            <div class="support-section">
+                <div class="support-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="support-text">
+                    <strong>Need help?</strong> If verification takes longer than expected, our support team will notify
+                    you automatically.
                 </div>
             </div>
         </div>
@@ -633,7 +1059,7 @@
             updateToggleButton();
         }
 
-        toggleBtn.addEventListener('click', function(e) {
+        toggleBtn.addEventListener('click', function (e) {
             e.preventDefault();
             sidebar.classList.toggle('collapsed');
             updateToggleButton();
@@ -653,7 +1079,7 @@
         }
 
         document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function(e) {
+            item.addEventListener('click', function (e) {
                 if (this.getAttribute('href') === '#') {
                     e.preventDefault();
                 }
@@ -661,4 +1087,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -364,35 +365,51 @@
             width: 100%;
             padding: 16px 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
             justify-content: space-between;
             gap: 12px;
             position: relative;
             z-index: 1;
             margin-top: auto;
+            box-sizing: border-box;
+        }
+
+        .sidebar.collapsed .user-section {
+            padding: 16px 12px;
+            justify-content: center;
         }
 
         .user-profile-bottom {
-            display: flex;
-            align-items: center;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
             gap: 12px;
             flex: 1;
             min-width: 0;
         }
 
+        .sidebar.collapsed .user-profile-bottom {
+            flex: 0;
+            gap: 0;
+        }
+
         .user-avatar-bottom {
             width: 40px;
             height: 40px;
+            min-width: 40px;
+            min-height: 40px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
             font-weight: 700;
             font-size: 14px;
             flex-shrink: 0;
+            line-height: 1;
         }
 
         .user-info-bottom {
@@ -400,12 +417,13 @@
             flex-direction: column;
             gap: 2px;
             min-width: 0;
+            flex: 1;
             opacity: 1;
             transition: opacity 0.2s;
         }
 
         .sidebar.collapsed .user-info-bottom {
-            display: none;
+            display: none !important;
         }
 
         .user-name-bottom {
@@ -415,6 +433,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            line-height: 1.3;
         }
 
         .user-email-bottom {
@@ -423,22 +442,29 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            line-height: 1.3;
         }
 
         .logout-btn {
             width: 32px;
             height: 32px;
+            min-width: 32px;
+            min-height: 32px;
             background: rgba(255, 255, 255, 0.2);
             border: none;
             border-radius: 8px;
             color: white;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
             font-size: 14px;
             transition: all 0.2s;
             flex-shrink: 0;
+        }
+
+        .sidebar.collapsed .logout-btn {
+            display: none !important;
         }
 
         .logout-btn:hover {
@@ -942,7 +968,7 @@
             align-items: flex-end;
             justify-content: space-around;
             padding: 20px 40px 40px 40px;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.02) 100%);
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.02) 100%);
         }
 
         .line-chart-grid {
@@ -1667,6 +1693,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- SIDEBAR -->
     <div class="sidebar" id="sidebar">
@@ -1677,7 +1704,7 @@
                 <i class="fas fa-chevron-left"></i>
             </button>
         </div>
-        
+
         <div class="nav-items">
             <div class="nav-section-title">My Loan</div>
             <a href="dashboard.html" class="nav-item active" title="Dashboard">
@@ -1853,7 +1880,7 @@
                     <h2 class="section-title">Your Loan Journey</h2>
                     <div class="journey-timeline">
                         <div class="journey-line"></div>
-                        
+
                         <div class="journey-step completed">
                             <div class="step-dot">✓</div>
                             <div class="step-label">Application</div>
@@ -1884,7 +1911,8 @@
                 <div class="loan-insights">
                     <div class="insights-header">
                         <h2 class="insights-title">Your Loan Insights</h2>
-                        <p class="insights-subtitle">Personalized insights based on your documents, income, and interactions</p>
+                        <p class="insights-subtitle">Personalized insights based on your documents, income, and
+                            interactions</p>
                     </div>
 
                     <div class="insights-grid">
@@ -1916,7 +1944,8 @@
                                         <span>25%</span>
                                         <span>0%</span>
                                     </div>
-                                    <div style="flex: 1; position: relative; display: flex; align-items: flex-end; justify-content: space-around; gap: 20px; padding-left: 20px;">
+                                    <div
+                                        style="flex: 1; position: relative; display: flex; align-items: flex-end; justify-content: space-around; gap: 20px; padding-left: 20px;">
                                         <div class="chart-bar">
                                             <div class="bar-stack" style="height: 120px; background: #10b981;"></div>
                                             <div class="bar-label">Salary Slip</div>
@@ -1936,8 +1965,12 @@
                                     </div>
                                 </div>
                                 <!-- Axis Labels -->
-                                <div style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--text-muted); font-weight: 600;">Documents</div>
-                                <div style="position: absolute; left: -35px; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: center; font-size: 11px; color: var(--text-muted); font-weight: 600; white-space: nowrap;">Completion %</div>
+                                <div
+                                    style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--text-muted); font-weight: 600;">
+                                    Documents</div>
+                                <div
+                                    style="position: absolute; left: -35px; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: center; font-size: 11px; color: var(--text-muted); font-weight: 600; white-space: nowrap;">
+                                    Completion %</div>
                             </div>
                         </div>
 
@@ -1961,60 +1994,79 @@
                                 </div>
                             </div>
                             <div style="position: relative; height: 200px; margin: 20px 0 40px 40px;">
-                                <svg width="100%" height="100%" viewBox="0 0 400 180" preserveAspectRatio="xMidYMid meet" style="overflow: visible;">
+                                <svg width="100%" height="100%" viewBox="0 0 400 180"
+                                    preserveAspectRatio="xMidYMid meet" style="overflow: visible;">
                                     <!-- Grid lines -->
-                                    <line x1="30" y1="30" x2="380" y2="30" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-                                    <line x1="30" y1="65" x2="380" y2="65" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-                                    <line x1="30" y1="100" x2="380" y2="100" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-                                    <line x1="30" y1="135" x2="380" y2="135" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
+                                    <line x1="30" y1="30" x2="380" y2="30" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+                                    <line x1="30" y1="65" x2="380" y2="65" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+                                    <line x1="30" y1="100" x2="380" y2="100" stroke="rgba(0,0,0,0.05)"
+                                        stroke-width="1" />
+                                    <line x1="30" y1="135" x2="380" y2="135" stroke="rgba(0,0,0,0.05)"
+                                        stroke-width="1" />
 
                                     <!-- Y-axis labels -->
-                                    <text x="15" y="35" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="end">₹100K</text>
-                                    <text x="15" y="70" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="end">₹75K</text>
-                                    <text x="15" y="105" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="end">₹50K</text>
-                                    <text x="15" y="140" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="end">₹25K</text>
+                                    <text x="15" y="35" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="end">₹100K</text>
+                                    <text x="15" y="70" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="end">₹75K</text>
+                                    <text x="15" y="105" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="end">₹50K</text>
+                                    <text x="15" y="140" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="end">₹25K</text>
 
                                     <!-- Income line (Light Blue) - flat at top -->
-                                    <polyline points="50,30 150,30 250,30 350,30" stroke="#93c5fd" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                                    
+                                    <polyline points="50,30 150,30 250,30 350,30" stroke="#93c5fd" stroke-width="3"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round" />
+
                                     <!-- Safe EMI line (Green) - middle -->
-                                    <polyline points="50,75 150,72 250,70 350,68" stroke="#86efac" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                                    
+                                    <polyline points="50,75 150,72 250,70 350,68" stroke="#86efac" stroke-width="3"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round" />
+
                                     <!-- EMI line (Purple) - lower -->
-                                    <polyline points="50,110 150,108 250,105 350,102" stroke="#a78bfa" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <polyline points="50,110 150,108 250,105 350,102" stroke="#a78bfa" stroke-width="3"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round" />
 
                                     <!-- Data points for Income -->
-                                    <circle cx="50" cy="30" r="4" fill="#93c5fd" stroke="white" stroke-width="2"/>
-                                    <circle cx="150" cy="30" r="4" fill="#93c5fd" stroke="white" stroke-width="2"/>
-                                    <circle cx="250" cy="30" r="4" fill="#93c5fd" stroke="white" stroke-width="2"/>
-                                    <circle cx="350" cy="30" r="4" fill="#93c5fd" stroke="white" stroke-width="2"/>
+                                    <circle cx="50" cy="30" r="4" fill="#93c5fd" stroke="white" stroke-width="2" />
+                                    <circle cx="150" cy="30" r="4" fill="#93c5fd" stroke="white" stroke-width="2" />
+                                    <circle cx="250" cy="30" r="4" fill="#93c5fd" stroke="white" stroke-width="2" />
+                                    <circle cx="350" cy="30" r="4" fill="#93c5fd" stroke="white" stroke-width="2" />
 
                                     <!-- Data points for Safe EMI -->
-                                    <circle cx="50" cy="75" r="4" fill="#86efac" stroke="white" stroke-width="2"/>
-                                    <circle cx="150" cy="72" r="4" fill="#86efac" stroke="white" stroke-width="2"/>
-                                    <circle cx="250" cy="70" r="4" fill="#86efac" stroke="white" stroke-width="2"/>
-                                    <circle cx="350" cy="68" r="4" fill="#86efac" stroke="white" stroke-width="2"/>
+                                    <circle cx="50" cy="75" r="4" fill="#86efac" stroke="white" stroke-width="2" />
+                                    <circle cx="150" cy="72" r="4" fill="#86efac" stroke="white" stroke-width="2" />
+                                    <circle cx="250" cy="70" r="4" fill="#86efac" stroke="white" stroke-width="2" />
+                                    <circle cx="350" cy="68" r="4" fill="#86efac" stroke="white" stroke-width="2" />
 
                                     <!-- Data points for EMI -->
-                                    <circle cx="50" cy="110" r="4" fill="#a78bfa" stroke="white" stroke-width="2"/>
-                                    <circle cx="150" cy="108" r="4" fill="#a78bfa" stroke="white" stroke-width="2"/>
-                                    <circle cx="250" cy="105" r="4" fill="#a78bfa" stroke="white" stroke-width="2"/>
-                                    <circle cx="350" cy="102" r="5" fill="#a78bfa" stroke="white" stroke-width="2.5"/>
+                                    <circle cx="50" cy="110" r="4" fill="#a78bfa" stroke="white" stroke-width="2" />
+                                    <circle cx="150" cy="108" r="4" fill="#a78bfa" stroke="white" stroke-width="2" />
+                                    <circle cx="250" cy="105" r="4" fill="#a78bfa" stroke="white" stroke-width="2" />
+                                    <circle cx="350" cy="102" r="5" fill="#a78bfa" stroke="white" stroke-width="2.5" />
 
                                     <!-- X-axis labels (only at bottom) -->
-                                    <text x="50" y="160" font-size="11" fill="rgba(0,0,0,0.5)" text-anchor="middle" font-weight="500">M1</text>
-                                    <text x="150" y="160" font-size="11" fill="rgba(0,0,0,0.5)" text-anchor="middle" font-weight="500">M2</text>
-                                    <text x="250" y="160" font-size="11" fill="rgba(0,0,0,0.5)" text-anchor="middle" font-weight="500">M3</text>
-                                    <text x="350" y="160" font-size="11" fill="rgba(0,0,0,0.5)" text-anchor="middle" font-weight="500">M4</text>
+                                    <text x="50" y="160" font-size="11" fill="rgba(0,0,0,0.5)" text-anchor="middle"
+                                        font-weight="500">M1</text>
+                                    <text x="150" y="160" font-size="11" fill="rgba(0,0,0,0.5)" text-anchor="middle"
+                                        font-weight="500">M2</text>
+                                    <text x="250" y="160" font-size="11" fill="rgba(0,0,0,0.5)" text-anchor="middle"
+                                        font-weight="500">M3</text>
+                                    <text x="350" y="160" font-size="11" fill="rgba(0,0,0,0.5)" text-anchor="middle"
+                                        font-weight="500">M4</text>
                                 </svg>
 
                                 <!-- Axis Labels -->
-                                <div style="position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--text-muted); font-weight: 600;">Time Period</div>
-                                <div style="position: absolute; left: -40px; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: center; font-size: 11px; color: var(--text-muted); font-weight: 600; white-space: nowrap;">Amount (₹)</div>
+                                <div
+                                    style="position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--text-muted); font-weight: 600;">
+                                    Time Period</div>
+                                <div
+                                    style="position: absolute; left: -40px; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: center; font-size: 11px; color: var(--text-muted); font-weight: 600; white-space: nowrap;">
+                                    Amount (₹)</div>
                             </div>
                             <div class="insight-text">
                                 <strong>Your EMI is 28% of your income (within safe range)</strong>
-                                <div style="margin-top: 8px; color: var(--success);">✓ Your repayment capacity is strong</div>
+                                <div style="margin-top: 8px; color: var(--success);">✓ Your repayment capacity is strong
+                                </div>
                             </div>
                         </div>
 
@@ -2024,66 +2076,87 @@
                                 📈 Risk Confidence Over Time
                             </div>
                             <div style="position: relative; height: 200px; margin: 20px 0;">
-                                <svg width="100%" height="100%" viewBox="0 0 400 180" preserveAspectRatio="xMidYMid meet" style="overflow: visible;">
+                                <svg width="100%" height="100%" viewBox="0 0 400 180"
+                                    preserveAspectRatio="xMidYMid meet" style="overflow: visible;">
                                     <defs>
                                         <linearGradient id="confidenceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                                             <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.3" />
                                             <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.05" />
                                         </linearGradient>
                                         <filter id="glow">
-                                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                                             <feMerge>
-                                                <feMergeNode in="coloredBlur"/>
-                                                <feMergeNode in="SourceGraphic"/>
+                                                <feMergeNode in="coloredBlur" />
+                                                <feMergeNode in="SourceGraphic" />
                                             </feMerge>
                                         </filter>
                                     </defs>
 
                                     <!-- Grid lines -->
-                                    <line x1="30" y1="30" x2="380" y2="30" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-                                    <line x1="30" y1="65" x2="380" y2="65" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-                                    <line x1="30" y1="100" x2="380" y2="100" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-                                    <line x1="30" y1="135" x2="380" y2="135" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
+                                    <line x1="30" y1="30" x2="380" y2="30" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+                                    <line x1="30" y1="65" x2="380" y2="65" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+                                    <line x1="30" y1="100" x2="380" y2="100" stroke="rgba(0,0,0,0.05)"
+                                        stroke-width="1" />
+                                    <line x1="30" y1="135" x2="380" y2="135" stroke="rgba(0,0,0,0.05)"
+                                        stroke-width="1" />
 
                                     <!-- Y-axis labels -->
-                                    <text x="15" y="35" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="end">100%</text>
-                                    <text x="15" y="70" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="end">75%</text>
-                                    <text x="15" y="105" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="end">50%</text>
-                                    <text x="15" y="140" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="end">25%</text>
+                                    <text x="15" y="35" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="end">100%</text>
+                                    <text x="15" y="70" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="end">75%</text>
+                                    <text x="15" y="105" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="end">50%</text>
+                                    <text x="15" y="140" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="end">25%</text>
 
                                     <!-- Gradient fill area under curve -->
-                                    <polygon points="50,120 100,95 150,80 200,65 250,50 300,35 350,25 350,160 300,160 250,160 200,160 150,160 100,160 50,160" fill="url(#confidenceGradient)"/>
+                                    <polygon
+                                        points="50,120 100,95 150,80 200,65 250,50 300,35 350,25 350,160 300,160 250,160 200,160 150,160 100,160 50,160"
+                                        fill="url(#confidenceGradient)" />
 
                                     <!-- Main line -->
-                                    <polyline points="50,120 100,95 150,80 200,65 250,50 300,35 350,25" stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+                                    <polyline points="50,120 100,95 150,80 200,65 250,50 300,35 350,25" stroke="#10b981"
+                                        stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                        filter="url(#glow)" />
 
                                     <!-- Data points -->
-                                    <circle cx="50" cy="120" r="5" fill="#10b981" stroke="white" stroke-width="2"/>
-                                    <circle cx="100" cy="95" r="5" fill="#10b981" stroke="white" stroke-width="2"/>
-                                    <circle cx="150" cy="80" r="5" fill="#10b981" stroke="white" stroke-width="2"/>
-                                    <circle cx="200" cy="65" r="5" fill="#10b981" stroke="white" stroke-width="2"/>
-                                    <circle cx="250" cy="50" r="5" fill="#10b981" stroke="white" stroke-width="2"/>
-                                    <circle cx="300" cy="35" r="5" fill="#10b981" stroke="white" stroke-width="2"/>
-                                    <circle cx="350" cy="25" r="6" fill="#10b981" stroke="white" stroke-width="2.5"/>
+                                    <circle cx="50" cy="120" r="5" fill="#10b981" stroke="white" stroke-width="2" />
+                                    <circle cx="100" cy="95" r="5" fill="#10b981" stroke="white" stroke-width="2" />
+                                    <circle cx="150" cy="80" r="5" fill="#10b981" stroke="white" stroke-width="2" />
+                                    <circle cx="200" cy="65" r="5" fill="#10b981" stroke="white" stroke-width="2" />
+                                    <circle cx="250" cy="50" r="5" fill="#10b981" stroke="white" stroke-width="2" />
+                                    <circle cx="300" cy="35" r="5" fill="#10b981" stroke="white" stroke-width="2" />
+                                    <circle cx="350" cy="25" r="6" fill="#10b981" stroke="white" stroke-width="2.5" />
 
                                     <!-- X-axis labels -->
-                                    <text x="50" y="160" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="middle">D1</text>
-                                    <text x="100" y="160" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="middle">D3</text>
-                                    <text x="150" y="160" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="middle">D5</text>
-                                    <text x="200" y="160" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="middle">D7</text>
-                                    <text x="250" y="160" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="middle">D10</text>
-                                    <text x="300" y="160" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="middle">D14</text>
-                                    <text x="350" y="160" font-size="10" fill="rgba(0,0,0,0.4)" text-anchor="middle">Today</text>
+                                    <text x="50" y="160" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="middle">D1</text>
+                                    <text x="100" y="160" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="middle">D3</text>
+                                    <text x="150" y="160" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="middle">D5</text>
+                                    <text x="200" y="160" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="middle">D7</text>
+                                    <text x="250" y="160" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="middle">D10</text>
+                                    <text x="300" y="160" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="middle">D14</text>
+                                    <text x="350" y="160" font-size="10" fill="rgba(0,0,0,0.4)"
+                                        text-anchor="middle">Today</text>
 
                                     <!-- Tooltip for latest point -->
                                     <g>
-                                        <rect x="330" y="5" width="60" height="20" rx="4" fill="#10b981" opacity="0.9"/>
-                                        <text x="360" y="18" font-size="12" font-weight="bold" fill="white" text-anchor="middle">94%</text>
+                                        <rect x="330" y="5" width="60" height="20" rx="4" fill="#10b981"
+                                            opacity="0.9" />
+                                        <text x="360" y="18" font-size="12" font-weight="bold" fill="white"
+                                            text-anchor="middle">94%</text>
                                     </g>
                                 </svg>
                             </div>
                             <div class="confidence-badge">Current Confidence: 94%</div>
-                            <div class="insight-text">Your confidence score has improved steadily as documents were verified and interactions increased.</div>
+                            <div class="insight-text">Your confidence score has improved steadily as documents were
+                                verified and interactions increased.</div>
                         </div>
 
                         <!-- CARD 4: Financial Stability Snapshot -->
@@ -2091,48 +2164,67 @@
                             <div class="insight-card-title">
                                 🛡️ Your Financial Stability Snapshot
                             </div>
-                            <div style="display: flex; align-items: center; justify-content: center; gap: 24px; padding: 20px 0;">
+                            <div
+                                style="display: flex; align-items: center; justify-content: center; gap: 24px; padding: 20px 0;">
                                 <!-- Pie Chart SVG -->
                                 <svg width="140" height="140" viewBox="0 0 140 140" style="flex-shrink: 0;">
                                     <!-- EMI Load (28%) - Green -->
-                                    <circle cx="70" cy="70" r="50" fill="none" stroke="#10b981" stroke-width="12" stroke-dasharray="43.96 157.08" stroke-dashoffset="0" transform="rotate(-90 70 70)"/>
-                                    
+                                    <circle cx="70" cy="70" r="50" fill="none" stroke="#10b981" stroke-width="12"
+                                        stroke-dasharray="43.96 157.08" stroke-dashoffset="0"
+                                        transform="rotate(-90 70 70)" />
+
                                     <!-- Income Stability (85%) - Light Green -->
-                                    <circle cx="70" cy="70" r="50" fill="none" stroke="#34d399" stroke-width="12" stroke-dasharray="133.38 157.08" stroke-dashoffset="-43.96" transform="rotate(-90 70 70)"/>
-                                    
+                                    <circle cx="70" cy="70" r="50" fill="none" stroke="#34d399" stroke-width="12"
+                                        stroke-dasharray="133.38 157.08" stroke-dashoffset="-43.96"
+                                        transform="rotate(-90 70 70)" />
+
                                     <!-- Repayment Capacity (90%) - Teal -->
-                                    <circle cx="70" cy="70" r="50" fill="none" stroke="#06b6d4" stroke-width="12" stroke-dasharray="141.37 157.08" stroke-dashoffset="-177.34" transform="rotate(-90 70 70)"/>
-                                    
+                                    <circle cx="70" cy="70" r="50" fill="none" stroke="#06b6d4" stroke-width="12"
+                                        stroke-dasharray="141.37 157.08" stroke-dashoffset="-177.34"
+                                        transform="rotate(-90 70 70)" />
+
                                     <!-- Risk Level (15%) - Blue -->
-                                    <circle cx="70" cy="70" r="50" fill="none" stroke="#3b82f6" stroke-width="12" stroke-dasharray="23.56 157.08" stroke-dashoffset="-318.71" transform="rotate(-90 70 70)"/>
-                                    
+                                    <circle cx="70" cy="70" r="50" fill="none" stroke="#3b82f6" stroke-width="12"
+                                        stroke-dasharray="23.56 157.08" stroke-dashoffset="-318.71"
+                                        transform="rotate(-90 70 70)" />
+
                                     <!-- Center circle for donut effect -->
-                                    <circle cx="70" cy="70" r="32" fill="rgba(255, 255, 255, 0.1)"/>
-                                    <text x="70" y="75" text-anchor="middle" font-size="20" font-weight="bold" fill="var(--text-primary)">Strong</text>
+                                    <circle cx="70" cy="70" r="32" fill="rgba(255, 255, 255, 0.1)" />
+                                    <text x="70" y="75" text-anchor="middle" font-size="20" font-weight="bold"
+                                        fill="var(--text-primary)">Strong</text>
                                 </svg>
 
                                 <!-- Legend -->
                                 <div style="display: flex; flex-direction: column; gap: 10px;">
                                     <div style="display: flex; align-items: center; gap: 8px; font-size: 12px;">
-                                        <div style="width: 12px; height: 12px; border-radius: 2px; background: #10b981;"></div>
+                                        <div
+                                            style="width: 12px; height: 12px; border-radius: 2px; background: #10b981;">
+                                        </div>
                                         <span>EMI Load: 28%</span>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 8px; font-size: 12px;">
-                                        <div style="width: 12px; height: 12px; border-radius: 2px; background: #34d399;"></div>
+                                        <div
+                                            style="width: 12px; height: 12px; border-radius: 2px; background: #34d399;">
+                                        </div>
                                         <span>Income: 85%</span>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 8px; font-size: 12px;">
-                                        <div style="width: 12px; height: 12px; border-radius: 2px; background: #06b6d4;"></div>
+                                        <div
+                                            style="width: 12px; height: 12px; border-radius: 2px; background: #06b6d4;">
+                                        </div>
                                         <span>Repayment: 90%</span>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 8px; font-size: 12px;">
-                                        <div style="width: 12px; height: 12px; border-radius: 2px; background: #3b82f6;"></div>
+                                        <div
+                                            style="width: 12px; height: 12px; border-radius: 2px; background: #3b82f6;">
+                                        </div>
                                         <span>Risk: 15%</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="stability-insight">
-                                ✓ Based on your current profile, your repayment capacity is strong and risk level is low.
+                                ✓ Based on your current profile, your repayment capacity is strong and risk level is
+                                low.
                             </div>
                         </div>
                     </div>
@@ -2147,7 +2239,8 @@
                                 <span class="insight-icon">💬</span>
                                 Your Question
                             </div>
-                            <div class="insight-text">You asked about loan approval timeline and interest calculation.</div>
+                            <div class="insight-text">You asked about loan approval timeline and interest calculation.
+                            </div>
                         </div>
 
                         <div class="insight-card">
@@ -2155,7 +2248,8 @@
                                 <span class="insight-icon">😌</span>
                                 Your Emotion
                             </div>
-                            <div class="insight-text">You seemed calm but slightly concerned about repayment flexibility.</div>
+                            <div class="insight-text">You seemed calm but slightly concerned about repayment
+                                flexibility.</div>
                         </div>
 
                         <div class="insight-card">
@@ -2166,7 +2260,8 @@
                             <div class="confidence-bar">
                                 <div class="confidence-fill"></div>
                             </div>
-                            <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">94% confidence</div>
+                            <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">94% confidence
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2174,7 +2269,7 @@
                 <!-- CONVERSATIONS -->
                 <div class="conversations">
                     <h2 class="section-title">Your Past Conversations</h2>
-                    
+
                     <div class="conversation-item">
                         <div class="conversation-icon sales">🟦</div>
                         <div class="conversation-content">
@@ -2203,10 +2298,14 @@
                 <!-- ACTIONS -->
                 <div class="actions-section">
                     <h2 class="section-title">Actions & Next Steps</h2>
-                    
+
                     <div class="action-box">
-                        <h3 style="font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;"><span style="width: 4px; height: 16px; background: var(--primary); border-radius: 2px;"></span>What You Should Do Next</h3>
-                        
+                        <h3
+                            style="font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                            <span
+                                style="width: 4px; height: 16px; background: var(--primary); border-radius: 2px;"></span>What
+                            You Should Do Next</h3>
+
                         <div class="action-item required">
                             <div class="action-icon">📄</div>
                             <div class="action-content">
@@ -2236,8 +2335,12 @@
                     </div>
 
                     <div class="action-box">
-                        <h3 style="font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;"><span style="width: 4px; height: 16px; background: var(--primary); border-radius: 2px;"></span>Recommended Next Steps</h3>
-                        
+                        <h3
+                            style="font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                            <span
+                                style="width: 4px; height: 16px; background: var(--primary); border-radius: 2px;"></span>Recommended
+                            Next Steps</h3>
+
                         <div class="action-item recommended">
                             <div class="action-icon">💰</div>
                             <div class="action-content">
@@ -2267,8 +2370,12 @@
                     </div>
 
                     <div class="action-box">
-                        <h3 style="font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;"><span style="width: 4px; height: 16px; background: var(--primary); border-radius: 2px;"></span>Quick Links</h3>
-                        
+                        <h3
+                            style="font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                            <span
+                                style="width: 4px; height: 16px; background: var(--primary); border-radius: 2px;"></span>Quick
+                            Links</h3>
+
                         <div class="action-item recommended">
                             <div class="action-icon">📚</div>
                             <div class="action-content">
@@ -2314,11 +2421,11 @@
         }
 
         // Toggle button click handler
-        toggleBtn.addEventListener('click', function(e) {
+        toggleBtn.addEventListener('click', function (e) {
             e.preventDefault();
             sidebar.classList.toggle('collapsed');
             updateToggleButton();
-            
+
             // Save state to localStorage
             const isCollapsed = sidebar.classList.contains('collapsed');
             localStorage.setItem('sidebarCollapsed', isCollapsed);
@@ -2338,7 +2445,7 @@
 
         // Only prevent default link behavior for placeholder links
         document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function(e) {
+            item.addEventListener('click', function (e) {
                 if (this.getAttribute('href') === '#') {
                     e.preventDefault();
                 }
@@ -2350,7 +2457,7 @@
             const userNameElement = document.getElementById('userNameBottom');
             const userEmailElement = document.getElementById('userEmailBottom');
             const userAvatarElement = document.getElementById('userAvatarBottom');
-            
+
             if (userNameElement) userNameElement.textContent = name;
             if (userEmailElement) userEmailElement.textContent = email;
             if (userAvatarElement) userAvatarElement.textContent = initials;
@@ -2361,7 +2468,7 @@
             const savedName = localStorage.getItem('userName');
             const savedEmail = localStorage.getItem('userEmail');
             const savedInitials = localStorage.getItem('userInitials');
-            
+
             if (savedName && savedEmail && savedInitials) {
                 updateUserProfile(savedName, savedEmail, savedInitials);
             }
@@ -2373,7 +2480,7 @@
         // Logout button functionality
         const logoutBtn = document.querySelector('.logout-btn');
         if (logoutBtn) {
-            logoutBtn.addEventListener('click', function(e) {
+            logoutBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 // Clear user data
                 localStorage.removeItem('userName');
@@ -2386,4 +2493,5 @@
         }
     </script>
 </body>
+
 </html>

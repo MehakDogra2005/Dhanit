@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -512,8 +513,353 @@
                 gap: 12px;
             }
         }
+
+        /* CELEBRATION BANNER */
+        .celebration-banner {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+        }
+
+        .celebration-banner-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .celebration-banner-content {
+            flex: 1;
+        }
+
+        .celebration-banner-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 4px;
+        }
+
+        .celebration-banner-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* KEY TERMS SUMMARY */
+        .key-terms-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .key-term {
+            text-align: center;
+            padding: 16px;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .key-term-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .key-term-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .terms-caption {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* WHY THESE TERMS */
+        .terms-explanation {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .terms-explanation-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terms-explanation-title i {
+            color: var(--primary);
+        }
+
+        .terms-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .terms-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .terms-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-list li i {
+            color: var(--success);
+            font-size: 10px;
+            margin-top: 4px;
+        }
+
+        /* DOCUMENTS SECTION */
+        .documents-section {
+            margin-top: 32px;
+        }
+
+        .documents-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .documents-title i {
+            color: var(--primary);
+        }
+
+        .document-card {
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .document-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .document-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .document-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(37, 99, 235, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .document-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .document-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .document-purpose {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .review-hint {
+            font-size: 11px;
+            color: var(--warning);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* NEXT STEPS */
+        .next-steps-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .next-steps-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .next-steps-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .next-steps-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .next-steps-content {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .process-flow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .process-step.completed {
+            color: var(--success);
+        }
+
+        .process-step.current {
+            color: var(--primary);
+        }
+
+        .process-step.upcoming {
+            color: var(--text-muted);
+        }
+
+        .process-arrow {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+        }
+
+        .btn-cta {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--success) 0%, #34d399 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+        }
+
+        .btn-cta i {
+            font-size: 16px;
+        }
+
+        .cta-reassurance {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .cta-reassurance i {
+            font-size: 11px;
+        }
+
+        /* ENHANCED CARD */
+        .sanctions-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .key-terms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="sidebar" id="sidebar">
         <div class="logo">
@@ -523,7 +869,7 @@
                 <i class="fas fa-chevron-left"></i>
             </button>
         </div>
-        
+
         <div class="nav-items">
             <div class="nav-section-title">My Loan</div>
             <a href="dashboard.html" class="nav-item" title="Dashboard">
@@ -563,6 +909,20 @@
                 <span class="nav-label">Settings</span>
             </a>
         </div>
+
+        <!-- USER PROFILE SECTION AT BOTTOM -->
+        <div class="user-section">
+            <div class="user-profile-bottom">
+                <div class="user-avatar-bottom" id="userAvatarBottom">SR</div>
+                <div class="user-info-bottom">
+                    <div class="user-name-bottom" id="userNameBottom">Sarah Rodriguez</div>
+                    <div class="user-email-bottom" id="userEmailBottom">sarah@email.com</div>
+                </div>
+            </div>
+            <button class="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
     </div>
 
     <div class="main-content">
@@ -592,32 +952,49 @@
                 <p class="page-subtitle">View your loan sanction details and download documents</p>
             </div>
 
+            <!-- CELEBRATION BANNER -->
+            <div class="celebration-banner">
+                <div class="celebration-banner-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="celebration-banner-content">
+                    <div class="celebration-banner-title">Congratulations! Your loan has been sanctioned 🎉</div>
+                    <div class="celebration-banner-text">You can now review your finalized loan terms and documents,
+                        then proceed towards disbursement.</div>
+                </div>
+            </div>
+
             <div class="sanctions-card">
                 <div class="sanctions-header">
                     <h2 class="sanctions-title">Loan Sanction Details</h2>
                     <span class="status-badge">✓ Sanctioned</span>
                 </div>
 
+                <!-- KEY TERMS SUMMARY -->
+                <div class="key-terms-grid">
+                    <div class="key-term">
+                        <div class="key-term-value">₹85,000</div>
+                        <div class="key-term-label">Loan Amount</div>
+                    </div>
+                    <div class="key-term">
+                        <div class="key-term-value">₹1,540</div>
+                        <div class="key-term-label">Monthly EMI</div>
+                    </div>
+                    <div class="key-term">
+                        <div class="key-term-value">8.9%</div>
+                        <div class="key-term-label">Interest Rate</div>
+                    </div>
+                    <div class="key-term">
+                        <div class="key-term-value">60</div>
+                        <div class="key-term-label">Months Tenure</div>
+                    </div>
+                </div>
+                <div class="terms-caption">These are your finalized loan terms</div>
+
                 <div class="sanctions-content">
                     <div class="content-row">
                         <span class="row-label">Sanction ID</span>
                         <span class="row-value">SANC-CS-7894-2024</span>
-                    </div>
-                    <div class="content-row">
-                        <span class="row-label">Loan Amount</span>
-                        <span class="row-value">₹85,000</span>
-                    </div>
-                    <div class="content-row">
-                        <span class="row-label">Interest Rate</span>
-                        <span class="row-value">8.9% p.a.</span>
-                    </div>
-                    <div class="content-row">
-                        <span class="row-label">Tenure</span>
-                        <span class="row-value">60 months</span>
-                    </div>
-                    <div class="content-row">
-                        <span class="row-label">Monthly EMI</span>
-                        <span class="row-value">₹1,540</span>
                     </div>
                     <div class="content-row">
                         <span class="row-label">Sanction Date</span>
@@ -627,31 +1004,115 @@
                         <span class="row-label">Validity</span>
                         <span class="row-value">90 days from sanction date</span>
                     </div>
+                </div>
 
-                    <div class="sanction-letter">
-                        <div class="letter-info">
-                            <div class="letter-icon">
+                <!-- WHY THESE TERMS -->
+                <div class="terms-explanation">
+                    <div class="terms-explanation-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Why these loan terms?
+                    </div>
+                    <ul class="terms-list">
+                        <li>
+                            <i class="fas fa-circle"></i>
+                            <span>Interest rate offered based on your strong credit score (745)</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-circle"></i>
+                            <span>EMI optimized to stay within safe income limits (1.8% ratio)</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-circle"></i>
+                            <span>Tenure selected to keep repayment comfortable and affordable</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- DOCUMENTS SECTION -->
+                <div class="documents-section">
+                    <div class="documents-title">
+                        <i class="fas fa-folder-open"></i>
+                        Required Documents
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-info">
+                            <div class="document-icon">
                                 <i class="fas fa-file-pdf"></i>
                             </div>
-                            <div class="letter-text">
-                                <div class="letter-title">Sanction Letter</div>
-                                <div class="letter-desc">Official loan sanction document</div>
+                            <div class="document-details">
+                                <div class="document-name">Sanction Letter</div>
+                                <div class="document-purpose">Required for disbursement processing</div>
                             </div>
                         </div>
                         <button class="btn btn-primary" style="width: auto;">Download</button>
                     </div>
 
-                    <div class="sanction-letter">
-                        <div class="letter-info">
-                            <div class="letter-icon">
-                                <i class="fas fa-file-pdf"></i>
+                    <div class="document-card">
+                        <div class="document-info">
+                            <div class="document-icon">
+                                <i class="fas fa-file-contract"></i>
                             </div>
-                            <div class="letter-text">
-                                <div class="letter-title">Terms & Conditions</div>
-                                <div class="letter-desc">Loan agreement and conditions</div>
+                            <div class="document-details">
+                                <div class="document-name">Terms & Conditions</div>
+                                <div class="document-purpose">Loan agreement and conditions</div>
+                                <div class="review-hint">
+                                    <i class="fas fa-eye"></i>
+                                    Please review carefully before proceeding
+                                </div>
                             </div>
                         </div>
                         <button class="btn btn-primary" style="width: auto;">Download</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WHAT HAPPENS NEXT -->
+            <div class="next-steps-section">
+                <div class="next-steps-header">
+                    <div class="next-steps-icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="next-steps-title">What happens next?</div>
+                </div>
+                <div class="next-steps-content">
+                    After reviewing the documents, your loan will proceed to <strong>Agreement & Disbursement</strong>.
+                    The loan amount will be credited to your registered bank account.
+                </div>
+                <div class="process-flow">
+                    <div class="process-step completed">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Verification</span>
+                    </div>
+                    <i class="fas fa-chevron-right process-arrow"></i>
+                    <div class="process-step completed">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Underwriting</span>
+                    </div>
+                    <i class="fas fa-chevron-right process-arrow"></i>
+                    <div class="process-step current">
+                        <i class="fas fa-stamp"></i>
+                        <span>Sanction</span>
+                    </div>
+                    <i class="fas fa-chevron-right process-arrow"></i>
+                    <div class="process-step upcoming">
+                        <i class="fas fa-file-signature"></i>
+                        <span>Agreement</span>
+                    </div>
+                    <i class="fas fa-chevron-right process-arrow"></i>
+                    <div class="process-step upcoming">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Disbursement</span>
+                    </div>
+                </div>
+                <div class="cta-section">
+                    <button class="btn-cta">
+                        <i class="fas fa-arrow-right"></i>
+                        Proceed to Disbursement
+                    </button>
+                    <div class="cta-reassurance">
+                        <i class="fas fa-info-circle"></i>
+                        You can review documents before final disbursement
                     </div>
                 </div>
             </div>
@@ -668,7 +1129,7 @@
             updateToggleButton();
         }
 
-        toggleBtn.addEventListener('click', function(e) {
+        toggleBtn.addEventListener('click', function (e) {
             e.preventDefault();
             sidebar.classList.toggle('collapsed');
             updateToggleButton();
@@ -688,7 +1149,7 @@
         }
 
         document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function(e) {
+            item.addEventListener('click', function (e) {
                 if (this.getAttribute('href') === '#') {
                     e.preventDefault();
                 }
@@ -696,4 +1157,5 @@
         });
     </script>
 </body>
+
 </html>

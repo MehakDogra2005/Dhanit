@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -483,8 +484,404 @@
                 font-size: 24px;
             }
         }
+
+        /* CONFIDENCE BANNER */
+        .confidence-banner {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+        }
+
+        .confidence-banner-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .confidence-banner-content {
+            flex: 1;
+        }
+
+        .confidence-banner-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 4px;
+        }
+
+        .confidence-banner-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* INTERPRETATION BADGES */
+        .metric-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .metric-badge.excellent {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .metric-badge.good {
+            background: rgba(37, 99, 235, 0.15);
+            color: var(--primary);
+        }
+
+        .metric-badge.safe {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .metric-badge.within-limits {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        .metric-badge.info {
+            background: rgba(107, 114, 128, 0.1);
+            color: var(--text-secondary);
+        }
+
+        /* RISK BREAKDOWN */
+        .risk-breakdown {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .risk-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .risk-title i {
+            color: var(--primary);
+        }
+
+        .risk-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .risk-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .risk-label {
+            width: 160px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .risk-label i {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .risk-bar-wrapper {
+            flex: 1;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.06);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .risk-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .risk-bar-fill.excellent {
+            background: linear-gradient(90deg, var(--success) 0%, #34d399 100%);
+        }
+
+        .risk-bar-fill.very-good {
+            background: linear-gradient(90deg, #34d399 0%, #86efac 100%);
+        }
+
+        .risk-bar-fill.acceptable {
+            background: linear-gradient(90deg, var(--warning) 0%, #fcd34d 100%);
+        }
+
+        .risk-rating {
+            width: 80px;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .risk-rating.excellent {
+            color: var(--success);
+        }
+
+        .risk-rating.very-good {
+            color: #059669;
+        }
+
+        .risk-rating.acceptable {
+            color: var(--warning);
+        }
+
+        /* HERO DECISION CARD */
+        .underwriting-card.hero {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.12);
+        }
+
+        .decision-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .decision-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .decision-status {
+            flex: 1;
+        }
+
+        .decision-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .decision-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .decision-reason {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 20px;
+            padding: 12px 16px;
+            background: rgba(16, 185, 129, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--success);
+        }
+
+        /* WHY THESE TERMS */
+        .terms-explanation {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .terms-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terms-title i {
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .terms-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .terms-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .terms-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-list li i {
+            color: var(--success);
+            font-size: 10px;
+            margin-top: 3px;
+        }
+
+        /* WHAT HAPPENS NEXT */
+        .next-steps-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .next-steps-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .next-steps-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .next-steps-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .next-steps-content {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .process-flow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 10px;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .process-step.completed {
+            color: var(--success);
+        }
+
+        .process-step.current {
+            color: var(--primary);
+        }
+
+        .process-step.upcoming {
+            color: var(--text-muted);
+        }
+
+        .process-arrow {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* ENHANCED CARD */
+        .underwriting-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* DOWNLOAD SUMMARY */
+        .download-summary {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 8px;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-download:hover {
+            background: rgba(37, 99, 235, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .btn-download i {
+            font-size: 14px;
+        }
     </style>
 </head>
+
 <body>
     <div class="sidebar" id="sidebar">
         <div class="logo">
@@ -494,7 +891,7 @@
                 <i class="fas fa-chevron-left"></i>
             </button>
         </div>
-        
+
         <div class="nav-items">
             <div class="nav-section-title">My Loan</div>
             <a href="dashboard.html" class="nav-item" title="Dashboard">
@@ -534,6 +931,20 @@
                 <span class="nav-label">Settings</span>
             </a>
         </div>
+
+        <!-- USER PROFILE SECTION AT BOTTOM -->
+        <div class="user-section">
+            <div class="user-profile-bottom">
+                <div class="user-avatar-bottom" id="userAvatarBottom">SR</div>
+                <div class="user-info-bottom">
+                    <div class="user-name-bottom" id="userNameBottom">Sarah Rodriguez</div>
+                    <div class="user-email-bottom" id="userEmailBottom">sarah@email.com</div>
+                </div>
+            </div>
+            <button class="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
     </div>
 
     <div class="main-content">
@@ -563,7 +974,49 @@
                 <p class="page-subtitle">Review your loan underwriting analysis and financial assessment</p>
             </div>
 
+            <!-- CONFIDENCE BANNER -->
+            <div class="confidence-banner">
+                <div class="confidence-banner-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="confidence-banner-content">
+                    <div class="confidence-banner-title">Your financial profile looks strong</div>
+                    <div class="confidence-banner-text">Based on income, credit score, and verified documents, your loan
+                        has been approved with favorable terms.</div>
+                </div>
+            </div>
+
+            <!-- RISK BREAKDOWN -->
+            <div class="risk-breakdown">
+                <div class="risk-title">
+                    <i class="fas fa-shield-alt"></i>
+                    Overall Risk Assessment
+                </div>
+                <div class="risk-item">
+                    <span class="risk-label"><i class="fas fa-briefcase"></i> Income Stability</span>
+                    <div class="risk-bar-wrapper">
+                        <div class="risk-bar-fill excellent" style="width: 95%;"></div>
+                    </div>
+                    <span class="risk-rating excellent">Excellent</span>
+                </div>
+                <div class="risk-item">
+                    <span class="risk-label"><i class="fas fa-chart-bar"></i> Credit Behaviour</span>
+                    <div class="risk-bar-wrapper">
+                        <div class="risk-bar-fill very-good" style="width: 88%;"></div>
+                    </div>
+                    <span class="risk-rating very-good">Very Good</span>
+                </div>
+                <div class="risk-item">
+                    <span class="risk-label"><i class="fas fa-balance-scale"></i> Debt Load</span>
+                    <div class="risk-bar-wrapper">
+                        <div class="risk-bar-fill acceptable" style="width: 70%;"></div>
+                    </div>
+                    <span class="risk-rating acceptable">Acceptable</span>
+                </div>
+            </div>
+
             <div class="underwriting-grid">
+                <!-- Financial Assessment -->
                 <div class="underwriting-card">
                     <h2 class="card-title">
                         <i class="fas fa-chart-pie"></i>
@@ -575,7 +1028,7 @@
                     </div>
                     <div class="metric-row">
                         <span class="metric-label">Monthly Expenses</span>
-                        <span class="metric-value">₹35,000</span>
+                        <span class="metric-value">₹35,000 <span class="metric-badge info">Normal</span></span>
                     </div>
                     <div class="metric-row">
                         <span class="metric-label">Proposed EMI</span>
@@ -583,14 +1036,16 @@
                     </div>
                     <div class="metric-row">
                         <span class="metric-label">EMI to Income Ratio</span>
-                        <span class="metric-value good">1.8%</span>
+                        <span class="metric-value good">1.8% <span class="metric-badge safe">Very Safe</span></span>
                     </div>
                     <div class="metric-row">
                         <span class="metric-label">Debt to Income Ratio</span>
-                        <span class="metric-value good">41%</span>
+                        <span class="metric-value good">41% <span class="metric-badge within-limits">Within
+                                Limits</span></span>
                     </div>
                 </div>
 
+                <!-- Credit Score Analysis -->
                 <div class="underwriting-card">
                     <h2 class="card-title">
                         <i class="fas fa-star"></i>
@@ -598,7 +1053,7 @@
                     </h2>
                     <div class="metric-row">
                         <span class="metric-label">Credit Score</span>
-                        <span class="metric-value good">745</span>
+                        <span class="metric-value good">745 <span class="metric-badge excellent">Excellent</span></span>
                     </div>
                     <div class="metric-row">
                         <span class="metric-label">Score Category</span>
@@ -610,7 +1065,7 @@
                     </div>
                     <div class="metric-row">
                         <span class="metric-label">Credit Utilization</span>
-                        <span class="metric-value good">28%</span>
+                        <span class="metric-value good">28% <span class="metric-badge safe">Healthy</span></span>
                     </div>
                     <div class="metric-row">
                         <span class="metric-label">Risk Level</span>
@@ -618,6 +1073,7 @@
                     </div>
                 </div>
 
+                <!-- Document Verification -->
                 <div class="underwriting-card">
                     <h2 class="card-title">
                         <i class="fas fa-file-alt"></i>
@@ -645,14 +1101,23 @@
                     </div>
                 </div>
 
-                <div class="underwriting-card">
+                <!-- HERO - Underwriting Decision -->
+                <div class="underwriting-card hero">
                     <h2 class="card-title">
                         <i class="fas fa-thumbs-up"></i>
                         Underwriting Decision
                     </h2>
-                    <div class="metric-row">
-                        <span class="metric-label">Overall Status</span>
-                        <span class="metric-value good">Approved</span>
+                    <div class="decision-header">
+                        <div class="decision-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="decision-status">
+                            <div class="decision-label">Overall Status</div>
+                            <div class="decision-value">Approved</div>
+                        </div>
+                    </div>
+                    <div class="decision-reason">
+                        Your loan has been approved based on strong income stability and excellent credit behavior.
                     </div>
                     <div class="metric-row">
                         <span class="metric-label">Loan Amount</span>
@@ -670,6 +1135,71 @@
                         <span class="metric-label">Approval Date</span>
                         <span class="metric-value">Jan 20, 2024</span>
                     </div>
+
+                    <!-- WHY THESE TERMS -->
+                    <div class="terms-explanation">
+                        <div class="terms-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Why these terms?
+                        </div>
+                        <ul class="terms-list">
+                            <li>
+                                <i class="fas fa-circle"></i>
+                                <span>Interest rate is lower due to your strong credit score (745)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-circle"></i>
+                                <span>EMI kept minimal due to low debt-to-income ratio</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-circle"></i>
+                                <span>Tenure optimized for affordable monthly payments</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- DOWNLOAD SUMMARY -->
+                    <div class="download-summary">
+                        <button class="btn-download">
+                            <i class="fas fa-file-download"></i>
+                            Download underwriting summary
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WHAT HAPPENS NEXT -->
+            <div class="next-steps-section">
+                <div class="next-steps-header">
+                    <div class="next-steps-icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="next-steps-title">What happens next?</div>
+                </div>
+                <div class="next-steps-content">
+                    Your loan will now move to <strong>Sanction</strong>, where final documents will be prepared and the
+                    disbursement process will begin.
+                </div>
+                <div class="process-flow">
+                    <div class="process-step completed">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Verification</span>
+                    </div>
+                    <i class="fas fa-chevron-right process-arrow"></i>
+                    <div class="process-step current">
+                        <i class="fas fa-calculator"></i>
+                        <span>Underwriting</span>
+                    </div>
+                    <i class="fas fa-chevron-right process-arrow"></i>
+                    <div class="process-step upcoming">
+                        <i class="fas fa-stamp"></i>
+                        <span>Sanction</span>
+                    </div>
+                    <i class="fas fa-chevron-right process-arrow"></i>
+                    <div class="process-step upcoming">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Disbursement</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -685,7 +1215,7 @@
             updateToggleButton();
         }
 
-        toggleBtn.addEventListener('click', function(e) {
+        toggleBtn.addEventListener('click', function (e) {
             e.preventDefault();
             sidebar.classList.toggle('collapsed');
             updateToggleButton();
@@ -705,7 +1235,7 @@
         }
 
         document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function(e) {
+            item.addEventListener('click', function (e) {
                 if (this.getAttribute('href') === '#') {
                     e.preventDefault();
                 }
@@ -713,4 +1243,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -462,8 +463,139 @@
                 overflow-x: auto;
             }
         }
+
+        /* CONTROL ROW STYLES */
+        .controls-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .filter-select {
+            padding: 10px 36px 10px 14px;
+            font-size: 13px;
+            font-family: inherit;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-primary);
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M3 4.5L6 7.5L9 4.5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        .filter-select:hover {
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 36px 10px 40px;
+            font-size: 13px;
+            font-family: inherit;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-input:hover {
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 12px;
+            cursor: pointer;
+            padding: 4px;
+            display: none;
+            transition: color 0.2s;
+        }
+
+        .search-clear:hover {
+            color: var(--text-primary);
+        }
+
+        .search-clear.visible {
+            display: block;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .no-results-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        tr.hidden {
+            display: none;
+        }
     </style>
 </head>
+
 <body>
     <div class="sidebar" id="sidebar">
         <div class="logo">
@@ -473,7 +605,7 @@
                 <i class="fas fa-chevron-left"></i>
             </button>
         </div>
-        
+
         <div class="nav-items">
             <div class="nav-section-title">My Loan</div>
             <a href="dashboard.html" class="nav-item" title="Dashboard">
@@ -513,6 +645,20 @@
                 <span class="nav-label">Settings</span>
             </a>
         </div>
+
+        <!-- USER PROFILE SECTION AT BOTTOM -->
+        <div class="user-section">
+            <div class="user-profile-bottom">
+                <div class="user-avatar-bottom" id="userAvatarBottom">SR</div>
+                <div class="user-info-bottom">
+                    <div class="user-name-bottom" id="userNameBottom">Sarah Rodriguez</div>
+                    <div class="user-email-bottom" id="userEmailBottom">sarah@email.com</div>
+                </div>
+            </div>
+            <button class="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
     </div>
 
     <div class="main-content">
@@ -543,7 +689,28 @@
             </div>
 
             <div class="applications-table">
-                <table>
+                <!-- CONTROL ROW -->
+                <div class="controls-row">
+                    <div class="filter-group">
+                        <span class="filter-label">Filter by Status</span>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="all">All</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" id="searchInput"
+                            placeholder="Search by Application ID, loan type, or status">
+                        <button class="search-clear" id="searchClear" title="Clear search">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <table id="applicationsTable">
                     <thead>
                         <tr>
                             <th>Application ID</th>
@@ -581,6 +748,10 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="no-results" id="noResults" style="display: none;">
+                    <div class="no-results-icon"><i class="fas fa-search"></i></div>
+                    <p>No loan applications match your search.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -595,7 +766,7 @@
             updateToggleButton();
         }
 
-        toggleBtn.addEventListener('click', function(e) {
+        toggleBtn.addEventListener('click', function (e) {
             e.preventDefault();
             sidebar.classList.toggle('collapsed');
             updateToggleButton();
@@ -615,12 +786,80 @@
         }
 
         document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function(e) {
+            item.addEventListener('click', function (e) {
                 if (this.getAttribute('href') === '#') {
                     e.preventDefault();
                 }
             });
         });
+
+        // FILTER AND SEARCH FUNCTIONALITY
+        const statusFilter = document.getElementById('statusFilter');
+        const searchInput = document.getElementById('searchInput');
+        const searchClear = document.getElementById('searchClear');
+        const table = document.getElementById('applicationsTable');
+        const noResults = document.getElementById('noResults');
+        const tableBody = table.querySelector('tbody');
+        const rows = tableBody.querySelectorAll('tr');
+
+        function filterTable() {
+            const filterValue = statusFilter.value.toLowerCase();
+            const searchValue = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const appId = row.cells[0].textContent.toLowerCase();
+                const loanType = row.cells[2].textContent.toLowerCase();
+                const statusCell = row.cells[3];
+                const statusText = statusCell.textContent.toLowerCase().trim();
+
+                // Check status filter
+                let passesFilter = filterValue === 'all' || statusText === filterValue;
+
+                // Check search
+                let passesSearch = searchValue === '' ||
+                    appId.includes(searchValue) ||
+                    loanType.includes(searchValue) ||
+                    statusText.includes(searchValue);
+
+                if (passesFilter && passesSearch) {
+                    row.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+                table.style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                table.style.display = 'table';
+            }
+        }
+
+        // Event listeners
+        statusFilter.addEventListener('change', filterTable);
+
+        searchInput.addEventListener('input', function () {
+            filterTable();
+            // Show/hide clear button
+            if (this.value.length > 0) {
+                searchClear.classList.add('visible');
+            } else {
+                searchClear.classList.remove('visible');
+            }
+        });
+
+        searchClear.addEventListener('click', function () {
+            searchInput.value = '';
+            searchClear.classList.remove('visible');
+            filterTable();
+            searchInput.focus();
+        });
     </script>
 </body>
+
 </html>
