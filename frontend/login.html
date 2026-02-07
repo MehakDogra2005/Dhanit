@@ -331,8 +331,28 @@
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Add login logic here
-            alert('Login functionality to be implemented');
+            
+            // Get form values
+            const emailInput = document.querySelector('input[type="email"]');
+            const email = emailInput.value;
+            
+            // Extract name from email (before @) and generate initials
+            const nameParts = email.split('@')[0].split('.');
+            const firstName = nameParts[0] ? nameParts[0].charAt(0).toUpperCase() + nameParts[0].slice(1) : 'User';
+            const lastName = nameParts[1] ? nameParts[1].charAt(0).toUpperCase() + nameParts[1].slice(1) : '';
+            const fullName = lastName ? `${firstName} ${lastName}` : firstName;
+            
+            // Generate initials
+            const initials = (firstName.charAt(0) + (lastName ? lastName.charAt(0) : '')).toUpperCase();
+            
+            // Save user data to localStorage
+            localStorage.setItem('userName', fullName);
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userInitials', initials);
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            // Redirect to dashboard
+            window.location.href = './dashboard.html';
         });
     </script>
 </body>

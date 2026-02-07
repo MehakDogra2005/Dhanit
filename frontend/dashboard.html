@@ -59,7 +59,7 @@
         /* SIDEBAR */
         .sidebar {
             width: var(--sidebar-expanded);
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            background: #1e3a8a;
             color: white;
             display: flex;
             flex-direction: column;
@@ -70,6 +70,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             transition: width 0.25s ease-in-out;
+            height: 100vh;
         }
 
         .sidebar.collapsed {
@@ -88,7 +89,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.3;
+            opacity: 0;
             z-index: 0;
             pointer-events: none;
         }
@@ -180,6 +181,7 @@
             padding: 0;
             position: relative;
             z-index: 1;
+            overflow-y: auto;
         }
 
         .nav-section-title {
@@ -355,6 +357,97 @@
             font-weight: 600;
             font-size: 14px;
             color: var(--text-primary);
+        }
+
+        /* USER PROFILE SECTION AT BOTTOM */
+        .user-section {
+            width: 100%;
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+            margin-top: auto;
+        }
+
+        .user-profile-bottom {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .user-avatar-bottom {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .user-info-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+            opacity: 1;
+            transition: opacity 0.2s;
+        }
+
+        .sidebar.collapsed .user-info-bottom {
+            display: none;
+        }
+
+        .user-name-bottom {
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-email-bottom {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .logout-btn {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .logout-btn:active {
+            transform: scale(0.95);
         }
 
         /* MAIN CONTENT */
@@ -1587,42 +1680,56 @@
         
         <div class="nav-items">
             <div class="nav-section-title">My Loan</div>
-            <a href="#" class="nav-item active" title="Dashboard">
+            <a href="dashboard.html" class="nav-item active" title="Dashboard">
                 <div class="nav-icon"><i class="fas fa-home"></i></div>
                 <span class="nav-label">Dashboard</span>
             </a>
-            <a href="#" class="nav-item" title="Loan Applications">
+            <a href="loan-applications.html" class="nav-item" title="Loan Applications">
                 <div class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                 <span class="nav-label">Loan Applications</span>
             </a>
 
             <div class="nav-section-title" style="margin-top: 16px;">Process</div>
-            <a href="#" class="nav-item" title="Chatbot">
+            <a href="chatbot.html" class="nav-item" title="Chatbot">
                 <div class="nav-icon"><i class="fas fa-robot"></i></div>
                 <span class="nav-label">Chatbot</span>
             </a>
-            <a href="#" class="nav-item" title="Verification">
+            <a href="verification.html" class="nav-item" title="Verification">
                 <div class="nav-icon"><i class="fas fa-search"></i></div>
                 <span class="nav-label">Verification</span>
             </a>
-            <a href="#" class="nav-item" title="Underwriting">
+            <a href="underwriting.html" class="nav-item" title="Underwriting">
                 <div class="nav-icon"><i class="fas fa-calculator"></i></div>
                 <span class="nav-label">Underwriting</span>
             </a>
-            <a href="#" class="nav-item" title="Sanctions">
+            <a href="sanctions.html" class="nav-item" title="Sanctions">
                 <div class="nav-icon"><i class="fas fa-stamp"></i></div>
                 <span class="nav-label">Sanctions</span>
             </a>
 
             <div class="nav-section-title" style="margin-top: 16px;">Insights</div>
-            <a href="#" class="nav-item" title="Insights & Analytics">
+            <a href="analytics.html" class="nav-item" title="Insights & Analytics">
                 <div class="nav-icon"><i class="fas fa-chart-line"></i></div>
                 <span class="nav-label">Insights & Analytics</span>
             </a>
-            <a href="#" class="nav-item" title="Settings">
+            <a href="settings.html" class="nav-item" title="Settings">
                 <div class="nav-icon"><i class="fas fa-cog"></i></div>
                 <span class="nav-label">Settings</span>
             </a>
+        </div>
+
+        <!-- USER PROFILE SECTION AT BOTTOM -->
+        <div class="user-section">
+            <div class="user-profile-bottom">
+                <div class="user-avatar-bottom" id="userAvatarBottom">SR</div>
+                <div class="user-info-bottom">
+                    <div class="user-name-bottom" id="userNameBottom">Sarah Rodriguez</div>
+                    <div class="user-email-bottom" id="userEmailBottom">sarah@email.com</div>
+                </div>
+            </div>
+            <button class="logout-btn" title="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
         </div>
     </div>
 
@@ -2229,12 +2336,54 @@
             }
         }
 
-        // Prevent default link behavior for demo
+        // Only prevent default link behavior for placeholder links
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', function(e) {
-                e.preventDefault();
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
             });
         });
+
+        // Function to update user profile in sidebar
+        function updateUserProfile(name, email, initials) {
+            const userNameElement = document.getElementById('userNameBottom');
+            const userEmailElement = document.getElementById('userEmailBottom');
+            const userAvatarElement = document.getElementById('userAvatarBottom');
+            
+            if (userNameElement) userNameElement.textContent = name;
+            if (userEmailElement) userEmailElement.textContent = email;
+            if (userAvatarElement) userAvatarElement.textContent = initials;
+        }
+
+        // Load user profile from localStorage on page load
+        function loadUserProfile() {
+            const savedName = localStorage.getItem('userName');
+            const savedEmail = localStorage.getItem('userEmail');
+            const savedInitials = localStorage.getItem('userInitials');
+            
+            if (savedName && savedEmail && savedInitials) {
+                updateUserProfile(savedName, savedEmail, savedInitials);
+            }
+        }
+
+        // Load user profile when page loads
+        loadUserProfile();
+
+        // Logout button functionality
+        const logoutBtn = document.querySelector('.logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Clear user data
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userInitials');
+                localStorage.removeItem('isLoggedIn');
+                // Redirect to login
+                window.location.href = './login.html';
+            });
+        }
     </script>
 </body>
 </html>

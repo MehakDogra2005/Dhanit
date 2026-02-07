@@ -38,7 +38,7 @@
         </a>
 
         <div class="nav-section-title" style="margin-top: 16px;">Insights</div>
-        <a href="analytics.html" class="nav-item" id="nav-analytics" title="Insights & Analytics">
+        <a href="settings.html" class="nav-item" id="nav-analytics" title="Insights & Analytics">
             <div class="nav-icon"><i class="fas fa-chart-line"></i></div>
             <span class="nav-label">Insights & Analytics</span>
         </a>
@@ -46,6 +46,20 @@
             <div class="nav-icon"><i class="fas fa-cog"></i></div>
             <span class="nav-label">Settings</span>
         </a>
+    </div>
+
+    <!-- USER PROFILE SECTION AT BOTTOM -->
+    <div class="user-section">
+        <div class="user-profile-bottom">
+            <div class="user-avatar-bottom" id="userAvatarBottom">SR</div>
+            <div class="user-info-bottom">
+                <div class="user-name-bottom" id="userNameBottom">Sarah Rodriguez</div>
+                <div class="user-email-bottom" id="userEmailBottom">sarah@email.com</div>
+            </div>
+        </div>
+        <button class="logout-btn" title="Logout">
+            <i class="fas fa-sign-out-alt"></i>
+        </button>
     </div>
 </div>
 
@@ -108,4 +122,48 @@
             setActiveNavItem();
         });
     });
+
+    // Function to update user profile in sidebar
+    function updateUserProfile(name, email, initials) {
+        const userNameElement = document.getElementById('userNameBottom');
+        const userEmailElement = document.getElementById('userEmailBottom');
+        const userAvatarElement = document.getElementById('userAvatarBottom');
+        
+        if (userNameElement) userNameElement.textContent = name;
+        if (userEmailElement) userEmailElement.textContent = email;
+        if (userAvatarElement) userAvatarElement.textContent = initials;
+        
+        // Save to localStorage
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userInitials', initials);
+    }
+
+    // Load user profile from localStorage on page load
+    function loadUserProfile() {
+        const savedName = localStorage.getItem('userName');
+        const savedEmail = localStorage.getItem('userEmail');
+        const savedInitials = localStorage.getItem('userInitials');
+        
+        if (savedName && savedEmail && savedInitials) {
+            updateUserProfile(savedName, savedEmail, savedInitials);
+        }
+    }
+
+    // Load user profile when sidebar loads
+    loadUserProfile();
+
+    // Logout button functionality
+    const logoutBtn = document.querySelector('.logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Clear user data
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userInitials');
+            // Redirect to login
+            window.location.href = './login.html';
+        });
+    }
 </script>

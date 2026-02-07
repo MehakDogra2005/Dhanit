@@ -423,8 +423,40 @@
 
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Add signup logic here
-            alert('Signup functionality to be implemented');
+            
+            // Get form values
+            const firstNameInput = document.querySelector('input[placeholder="John"]');
+            const lastNameInput = document.querySelector('input[placeholder="Doe"]');
+            const emailInput = document.querySelector('input[type="email"]');
+            const passwordInput = document.querySelector('input[type="password"]');
+            const confirmPasswordInput = document.querySelectorAll('input[type="password"]')[1];
+            
+            const firstName = firstNameInput.value.trim();
+            const lastName = lastNameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            // Create full name
+            const fullName = `${firstName} ${lastName}`;
+            
+            // Generate initials
+            const initials = (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
+            
+            // Save user data to localStorage
+            localStorage.setItem('userName', fullName);
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userInitials', initials);
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            // Redirect to dashboard
+            window.location.href = './dashboard.html';
         });
     </script>
 </body>
